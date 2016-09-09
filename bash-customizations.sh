@@ -10,10 +10,10 @@ if [ -f ${HOME}/.bash-local-vars.sh ]; then
 fi
 
 # variables
-export IS_LINUX
-IS_LINUX=$(uname -s) || true
+_myos=$(uname)
 
-if [ "$(uname)" == "Darwin" ]; then
+# Setup OS-Specific variables and bash_completion
+if [ $_myos == "Darwin" ]; then
     # running on macOS - setup brew & completion
     export PATH=/usr/local/bin:/usr/local/sbin:$PATH
     # Disable homrew analytics (https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md)
@@ -27,7 +27,7 @@ if [ "$(uname)" == "Darwin" ]; then
         # shellcheck source=/usr/local
         . $BREW_PREFIX/etc/bash_completion
     fi
-elif [ "$(expr substr $IS_LINUX 1 5)" == "Linux" ]; then
+elif [ $_myos == "Linux" ]; then
     # running on Linux - setup completion
     if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
         . /etc/bash_completion
@@ -57,15 +57,19 @@ alias ipify='curl -s https://api.ipify.org'
 alias header='curl -I'
 alias df='df -H'
 alias du='du -ch'
+alias fix_tty='stty sane'
 
 # macOS-specific Aliases & functions
-if [ "$(uname)" == "Darwin" ]; then
+if [ $_myos == "Darwin" ]; then
     # Mute & unmute from CLI
     alias mute="osascript -e 'set volume output muted true'"
     alias unmute="osascript -e 'set volume output muted false'"
 
     # Long running CLI command?  Tack ";lmk" onto the end
     alias lmk="say 'Process complete.'"
+
+    # cleanupDS: recursively delete .DS_Store files
+    alias cleanupDS="find . -type f -name '*.DS_Store' -ls -delete"
 
     # Brew
     alias bupd="brew -v update"
