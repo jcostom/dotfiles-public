@@ -50,7 +50,7 @@ alias dir='ls -lGF'
 alias txl='tmux ls'
 alias txn='tmux new -s'
 alias txa='tmux a -t'
-alias myip='curl ipv4.icanhazip.com ; curl ipv6.icanhazip.com'
+alias myip='curl ipv4.icanhazip.com'
 alias myip4='curl ipv4.icanhazip.com'
 alias myip6='curl ipv6.icanhazip.com'
 alias ipify='curl -s https://api.ipify.org'
@@ -58,6 +58,7 @@ alias header='curl -I'
 alias df='df -H'
 alias du='du -ch'
 alias fix_tty='stty sane'
+alias cmount='mount | column -t'
 
 # macOS-specific Aliases & functions
 if [ $_myos == "Darwin" ]; then
