@@ -59,6 +59,7 @@ alias df='df -H'
 alias du='du -ch'
 alias fix_tty='stty sane'
 alias cmount='mount | column -t'
+alias nvim='/usr/local/bin/nvim -u ~/.vimrc'
 
 # macOS-specific Aliases & functions
 if [ $_myos == "Darwin" ]; then
