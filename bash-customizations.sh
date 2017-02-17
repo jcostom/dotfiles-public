@@ -64,7 +64,10 @@ alias nvim='/usr/local/bin/nvim -u ~/.vimrc'
 # macOS-specific Aliases & functions
 if [ $_myos == "Darwin" ]; then
     # Lock Screen
-    alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+    # "Switch User" method
+    # alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+    # Uses Maclock tool - https://github.com/jcostom/maclock
+    alias afk="/usr/local/bin/maclock"
 
     # Mute & unmute from CLI
     alias mute="osascript -e 'set volume output muted true'"
