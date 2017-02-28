@@ -60,6 +60,7 @@ alias du='du -ch'
 alias fix_tty='stty sane'
 alias cmount='mount | column -t'
 alias nvim='/usr/local/bin/nvim -u ~/.vimrc'
+alias sha256='openssl dgst -sha256'
 
 # macOS-specific Aliases & functions
 if [ $_myos == "Darwin" ]; then
