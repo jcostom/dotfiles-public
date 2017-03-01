@@ -4,6 +4,10 @@ export HISTCONTROL=ignoreboth
 export HISTSIZE=1000
 export HISTIGNORE="ls:pwd:exit"
 
+# package specific variables, OS independent
+# cheat - https://github.com/chrisallenlane/cheat
+export CHEATCOLORS=true
+
 if [ -f ${HOME}/.bash-local-vars.sh ]; then
     # shellcheck source=$HOME/.bash-local-vars.sh
     source "${HOME}/.bash-local-vars.sh"
