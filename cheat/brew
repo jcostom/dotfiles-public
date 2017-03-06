@@ -1,0 +1,32 @@
+# Search for string in package name
+brew search [string]
+
+# Install package
+brew install [package]
+
+# Uninstall package
+brew uninstall [package]
+
+# Want to see all the details of install/uninstall? Add -v, like this:
+brew -v install [package]
+brew -v uninstall [package]
+
+# Update Packages
+brew update
+
+# Upgrade Installed Packages
+brew upgrade
+
+# What's already installed?
+brew list
+
+# Tap a formula repo
+[Hosted at https://github.com/user/homebrew-repo]
+brew tap user/repo
+
+[Hosted elsewhere]
+brew tap user/repo http://url/goes/here
+
+# Use the Cask (installs pre-built commonly used macOS apps)
+brew tap caskroom/cask
+brew cask install google-chrome (for example)
