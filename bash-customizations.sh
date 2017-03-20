@@ -191,6 +191,14 @@ function getcertnames() {
 	fi;
 }
 
+# Convert join.me's webm export format to 24fps MP4 with h264 video/aac audio
+joinme2mp4 () {
+    local infile=$1
+    local outfile
+    outfile=$(echo $infile | sed 's/webm$/mp4/')
+    ffmpeg -y -i $infile -r 23.97 $outfile
+}
+
 # Prompt
 bold=$(tput bold)
 white=$(tput setaf 7)
