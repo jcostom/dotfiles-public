@@ -9,8 +9,8 @@ export HISTIGNORE="ls:pwd:exit"
 export CHEATCOLORS=true
 
 if [ -f ${HOME}/.bash-local-vars.sh ]; then
-    # shellcheck source=$HOME/.bash-local-vars.sh
-    source "${HOME}/.bash-local-vars.sh"
+    # shellcheck source=$HOME/.dotfiles-private/bash-local-vars.sh
+    source "${HOME}/.dotfiles-private/bash-local-vars.sh"
 fi
 
 # variables
