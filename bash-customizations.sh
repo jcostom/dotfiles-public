@@ -141,20 +141,6 @@ extract () {
 # zipf: To create a ZIP archive of a folder
 zipf () { zip -r "$1".zip "$1" ; }
 
-# fs: Determine size of a file or total size of a directory
-fs() {
-    if du -b /dev/null > /dev/null 2>&1; then
-        local arg=-sbh
-    else
-        local arg=-sh
-    fi
-    if [[ -n "$@" ]]; then
-        du $arg -- "$@"
-    else
-        du $arg .[^.]* *
-    fi
-}
-
 # Show all the names (CNs and SANs) listed in the SSL certificate
 # for a given domain
 function getcertnames() {
