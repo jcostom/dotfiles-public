@@ -113,6 +113,11 @@ if [ $_myos == "Darwin" ]; then
         #echo -e "\n${RED}DNS Configuration:$NC " ; scutil --dns
         echo
     }
+
+    # trash
+    trash () {
+        command mv "$@" ~/.Trash
+    }
 fi
 
 # Useful functions
@@ -121,6 +126,7 @@ extract () {
     if [ -f $1 ] ; then
       case $1 in
         *.tar.bz2)   tar xjf $1     ;;
+        *.tar.xz)    xzcat $1 | tar xvf - ;;
         *.tar.gz)    tar xzf $1     ;;
         *.bz2)       bunzip2 $1     ;;
         *.rar)       unrar e $1     ;;
@@ -143,7 +149,7 @@ zipf () { zip -r "$1".zip "$1" ; }
 
 # Show all the names (CNs and SANs) listed in the SSL certificate
 # for a given domain
-function getcertnames() {
+getcertnames() {
 	if [ -z "${1}" ]; then
 		echo "ERROR: No domain specified.";
 		return 1;
@@ -183,6 +189,22 @@ joinme2mp4 () {
     local outfile
     outfile=$(echo $infile | sed 's/webm$/mp4/')
     ffmpeg -y -i $infile -r 23.97 $outfile
+}
+
+# Create & enter a new directory
+mcd () {
+    mkdir -p $1
+    cd $1 ||exit
+}
+
+# shortcut to find a process
+psa () {
+    ps auxww | grep $1
+}
+
+# Show HTTP headers
+httpHeaders () {
+    /usr/bin/curl -I -L "$@"
 }
 
 # Prompt
