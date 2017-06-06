@@ -191,6 +191,13 @@ joinme2mp4 () {
     ffmpeg -y -i $infile -r 23.97 $outfile
 }
 
+lazygit () {
+    local message=$*
+    git add .
+    git commit -a -m "$message"
+    git push
+}
+
 # Create & enter a new directory
 mcd () {
     mkdir -p $1
