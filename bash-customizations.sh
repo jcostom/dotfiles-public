@@ -13,6 +13,11 @@ if [ -f ${HOME}/.dotfiles-private/bash-local-vars.sh ]; then
     source "${HOME}/.dotfiles-private/bash-local-vars.sh"
 fi
 
+if [ -f ${HOME}/.dotfiles-private/bash-private-aliases.sh ]; then
+    # shellcheck source=$HOME/.dotfiles-private/bash-private-aliases.sh
+    source "${HOME}/.dotfiles-private/bash-private-aliases.sh"
+fi
+
 # variables
 _myos=$(uname)
 
