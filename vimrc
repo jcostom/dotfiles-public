@@ -8,7 +8,7 @@ set smartcase
 set ignorecase
 set incsearch
 set shiftwidth=4
-set smartindent
+" set smartindent
 set ruler
 set undolevels=1000
 set backspace=indent,eol,start
