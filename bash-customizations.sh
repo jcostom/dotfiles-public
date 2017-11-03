@@ -55,7 +55,7 @@ shopt -s histappend
 shopt -s cdspell
 
 # General Aliases
-alias dir='ls -lGF'
+alias dir='ls -lF'
 alias txl='tmux ls'
 alias txn='tmux new -s'
 alias txa='tmux a -t'
@@ -82,6 +82,9 @@ if [ $_myos == "Darwin" ]; then
     # Mute & unmute from CLI
     alias mute="osascript -e 'set volume output muted true'"
     alias unmute="osascript -e 'set volume output muted false'"
+
+    # colorize ls output on macOS
+    alias dir='ls -lGF'
 
     # Long running CLI command?  Tack ";lmk" onto the end
     alias lmk="say 'Process complete.'"
