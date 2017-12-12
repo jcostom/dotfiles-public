@@ -107,6 +107,9 @@ if [ $_myos == "Darwin" ]; then
     alias localip='ipconfig getifaddr en0'
     alias ipinfo='ipconfig getpacket en0'
 
+    # PowerCLI Core
+    alias powercli='docker run --rm -it -v ~/.local/powerclicore:/tmp/scripts vmware/powerclicore'
+
     # functions
     # ii:
     # display useful host related informaton
