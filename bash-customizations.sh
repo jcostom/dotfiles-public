@@ -227,7 +227,10 @@ httpHeaders () {
 
 # Convert 4k mkv to mp4, add tag for apple tv
 mkv2mp4 () {
-    ffmpeg -i $1 -codec copy -vtag hvc1 -map 0:0 -map 0:1 $1
+    local infile=$1
+    local outfile
+    outfile=$(echo $infile | sed 's/mkv$/mp4/')
+    ffmpeg -i $infile -codec copy -vtag hvc1 -map 0:0 -map 0:1 $outfile
 }
 
 # Prompt
