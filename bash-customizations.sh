@@ -79,6 +79,9 @@ if [ $_myos == "Darwin" ]; then
     # Uses Maclock tool - https://github.com/jcostom/maclock
     alias afk="/usr/local/bin/maclock"
 
+    # What's keeping the Mac from sleeping?
+    alias nosleep="pmset -g assertions"
+
     # Mute & unmute from CLI
     alias mute="osascript -e 'set volume output muted true'"
     alias unmute="osascript -e 'set volume output muted false'"
