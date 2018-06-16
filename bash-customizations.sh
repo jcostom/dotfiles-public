@@ -8,12 +8,12 @@ export HISTIGNORE="ls:pwd:exit"
 # cheat - https://github.com/chrisallenlane/cheat
 export CHEATCOLORS=true
 
-if [ -f ${HOME}/.dotfiles-private/bash-local-vars.sh ]; then
+if [ -f "${HOME}/.dotfiles-private/bash-local-vars.sh" ]; then
     # shellcheck source=$HOME/.dotfiles-private/bash-local-vars.sh
     source "${HOME}/.dotfiles-private/bash-local-vars.sh"
 fi
 
-if [ -f ${HOME}/.dotfiles-private/bash-private-aliases.sh ]; then
+if [ -f "${HOME}/.dotfiles-private/bash-private-aliases.sh" ]; then
     # shellcheck source=$HOME/.dotfiles-private/bash-private-aliases.sh
     source "${HOME}/.dotfiles-private/bash-private-aliases.sh"
 fi
@@ -22,7 +22,7 @@ fi
 _myos=$(uname)
 
 # Setup OS-Specific variables and bash_completion
-if [ $_myos == "Darwin" ]; then
+if [ "$_myos" == "Darwin" ]; then
     # running on macOS - setup brew & completion
     export PATH=/usr/local/bin:/usr/local/sbin:$PATH
     # Disable homrew analytics (https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md)
@@ -32,11 +32,11 @@ if [ $_myos == "Darwin" ]; then
     export BREW_PREFIX
     BREW_PREFIX=$(brew --prefix) || true
 
-    if [ -f $BREW_PREFIX/etc/bash_completion ]; then
-        # shellcheck source=/usr/local
-        . $BREW_PREFIX/etc/bash_completion
+    if [ -f "$BREW_PREFIX/etc/bash_completion" ]; then
+        # shellcheck source=$BREW_PREFIX/etc/bash_completion
+        . "$BREW_PREFIX/etc/bash_completion"
     fi
-elif [ $_myos == "Linux" ]; then
+elif [ "$_myos" == 'Linux' ]; then
     # running on Linux - setup completion
     if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
         . /etc/bash_completion
@@ -72,7 +72,7 @@ alias nvim='/usr/local/bin/nvim -u ~/.vimrc'
 alias sha256='openssl dgst -sha256'
 
 # macOS-specific Aliases & functions
-if [ $_myos == "Darwin" ]; then
+if [ "$_myos" == "Darwin" ]; then
     # Lock Screen
     # "Switch User" method
     # alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
@@ -117,13 +117,13 @@ if [ $_myos == "Darwin" ]; then
     # ii:
     # display useful host related informaton
     ii() {
-        echo -e "\nYou are logged on ${RED}$HOST"
-        echo -e "\nAdditionnal information:$NC " ; uname -a
-        echo -e "\n${RED}Users logged on:$NC " ; w -h
-        echo -e "\n${RED}Current date :$NC " ; date
-        echo -e "\n${RED}Machine stats :$NC " ; uptime
-        echo -e "\n${RED}Current network location :$NC " ; scselect
-        echo -e "\n${RED}Public facing IP Address :$NC " ;myip
+        echo -e "\\nYou are logged on ${RED}$HOST"
+        echo -e "\\nAdditionnal information:$NC " ; uname -a
+        echo -e "\\n${RED}Users logged on:$NC " ; w -h
+        echo -e "\\n${RED}Current date :$NC " ; date
+        echo -e "\\n${RED}Machine stats :$NC " ; uptime
+        echo -e "\\n${RED}Current network location :$NC " ; scselect
+        echo -e "\\n${RED}Public facing IP Address :$NC " ;myip
         #echo -e "\n${RED}DNS Configuration:$NC " ; scutil --dns
         echo
     }
@@ -148,20 +148,20 @@ fi
 # Useful functions
 # extract: Extract most know archives with one command
 extract () {
-    if [ -f $1 ] ; then
+    if [ -f "$1" ] ; then
       case $1 in
-        *.tar.bz2)   tar xjf $1     ;;
-        *.tar.xz)    xzcat $1 | tar xvf - ;;
-        *.tar.gz)    tar xzf $1     ;;
-        *.bz2)       bunzip2 $1     ;;
-        *.rar)       unrar e $1     ;;
-        *.gz)        gunzip $1      ;;
-        *.tar)       tar xf $1      ;;
-        *.tbz2)      tar xjf $1     ;;
-        *.tgz)       tar xzf $1     ;;
-        *.zip)       unzip $1       ;;
-        *.Z)         uncompress $1  ;;
-        *.7z)        7z x $1        ;;
+        *.tar.bz2)   tar xjf "$1"     ;;
+        *.tar.xz)    xzcat "$1" | tar xvf - ;;
+        *.tar.gz)    tar xzf "$1"     ;;
+        *.bz2)       bunzip2 "$1"     ;;
+        *.rar)       unrar e "$1"     ;;
+        *.gz)        gunzip "$1"      ;;
+        *.tar)       tar xf "$1"      ;;
+        *.tbz2)      tar xjf "$1"     ;;
+        *.tgz)       tar xzf "$1"     ;;
+        *.zip)       unzip "$1"       ;;
+        *.Z)         uncompress "$1"  ;;
+        *.7z)        7z x "$1"        ;;
         *)     echo "'$1' cannot be extracted via extract()" ;;
          esac
      else
@@ -185,7 +185,7 @@ getcertnames() {
 	echo ""; # newline
 
     local tmp
-	tmp=$(echo -e "GET / HTTP/1.0\nEOT" \
+	tmp=$(echo -e "GET / HTTP/1.0\\nEOT" \
 		| openssl s_client -connect "${domain}:443" -servername "${domain}" 2>&1);
 
 	if [[ "${tmp}" = *"-----BEGIN CERTIFICATE-----"* ]]; then
@@ -195,12 +195,12 @@ getcertnames() {
 			no_serial, no_sigdump, no_signame, no_validity, no_version");
 		echo "Common Name:";
 		echo ""; # newline
-		echo "${certText}" | grep "Subject:" | sed -e "s/^.*CN=//" | sed -e "s/\/emailAddress=.*//";
+		echo "${certText}" | grep "Subject:" | sed -e "s/^.*CN=//" | sed -e "s/\\/emailAddress=.*//";
 		echo ""; # newline
 		echo "Subject Alternative Name(s):";
 		echo ""; # newline
 		echo "${certText}" | grep -A 1 "Subject Alternative Name:" \
-			| sed -e "2s/DNS://g" -e "s/ //g" | tr "," "\n" | tail -n +2;
+			| sed -e "2s/DNS://g" -e "s/ //g" | tr "," "\\n" | tail -n +2;
 		return 0;
 	else
 		echo "ERROR: Certificate not found.";
@@ -212,8 +212,8 @@ getcertnames() {
 joinme2mp4 () {
     local infile=$1
     local outfile
-    outfile=$(echo $infile | sed 's/webm$/mp4/')
-    ffmpeg -y -i $infile -r 23.97 $outfile
+    outfile=$(echo "$infile" | sed 's/webm$/mp4/')
+    ffmpeg -y -i "$infile" -r 23.97 "$outfile"
 }
 
 lazygit () {
@@ -225,13 +225,13 @@ lazygit () {
 
 # Create & enter a new directory
 mcd () {
-    mkdir -p $1
-    cd $1 ||exit
+    mkdir -p "$1"
+    cd "$1" ||exit
 }
 
 # shortcut to find a process
 psa () {
-    ps auxww | grep $1
+    ps auxww | grep "$1"
 }
 
 # Show HTTP headers
@@ -243,8 +243,8 @@ httpHeaders () {
 mkv2mp4 () {
     local infile=$1
     local outfile
-    outfile=$(echo $infile | sed 's/mkv$/mp4/')
-    ffmpeg -i $infile -codec copy -vtag hvc1 -map 0:0 -map 0:1 $outfile
+    outfile=$(echo "$infile" | sed 's/mkv$/mp4/')
+    ffmpeg -i "$infile" -codec copy -vtag hvc1 -map 0:0 -map 0:1 "$outfile"
 }
 
 # Prompt
