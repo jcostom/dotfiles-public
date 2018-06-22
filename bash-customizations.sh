@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 # Better history
 export HISTCONTROL=ignoreboth
 export HISTSIZE=1000
