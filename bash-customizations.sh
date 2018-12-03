@@ -99,7 +99,7 @@ if [ "$_myos" == "Darwin" ]; then
     # Brew
     alias bupd="brew -v update"
     alias bupg="brew -v upgrade"
-    alias bclean="brew -v cleanup"
+    alias bclean="brew cleanup"
 
     # MTR
     alias mtr='sudo mtr -e -o LSR NABWV'
