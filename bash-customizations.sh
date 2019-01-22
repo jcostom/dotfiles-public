@@ -73,7 +73,7 @@ alias nvim='/usr/local/bin/nvim -u ~/.vimrc'
 alias sha256='openssl dgst -sha256'
 
 # Docker/Container TOP
-alias ctop='docker run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
+alias ctop='docker run --rm -ti --name=ctop-tmp -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
 
 # macOS-specific Aliases & functions
 if [ "$_myos" == "Darwin" ]; then
