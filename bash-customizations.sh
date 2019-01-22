@@ -72,6 +72,9 @@ alias cmount='mount | column -t'
 alias nvim='/usr/local/bin/nvim -u ~/.vimrc'
 alias sha256='openssl dgst -sha256'
 
+# Docker/Container TOP
+alias ctop='docker run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
+
 # macOS-specific Aliases & functions
 if [ "$_myos" == "Darwin" ]; then
     # Lock Screen
@@ -113,9 +116,6 @@ if [ "$_myos" == "Darwin" ]; then
 
     # PowerCLI Core
     alias powercli='docker run --rm -it -v ~/.local/powerclicore:/tmp/scripts vmware/powerclicore'
-
-    # Docker/Container TOP
-    alias ctop='docker run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
 
     # functions
     # ii:
