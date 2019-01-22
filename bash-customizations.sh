@@ -114,6 +114,9 @@ if [ "$_myos" == "Darwin" ]; then
     # PowerCLI Core
     alias powercli='docker run --rm -it -v ~/.local/powerclicore:/tmp/scripts vmware/powerclicore'
 
+    # Docker/Container TOP
+    alias ctop='docker run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
+
     # functions
     # ii:
     # display useful host related informaton
