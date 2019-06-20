@@ -255,6 +255,12 @@ reset=$(tput sgr0)
 
 #export PS1='\[$bold\]\n\[$white\][\[$red\]\u@\h\[$white\]]\[$blue\](\A)\n\[$green\]$PWD\[$blue\]\$ \[$reset\]'
 
+#export PROMPT='
+#%B%F{white}[%F{red}%n@%m%F{white}]%F{blue}(%T)
+#%F{green}%/%F{blue}%#%f%b '
+
 export PROMPT='
-%B%F{white}[%F{red}%n@%m%F{white}]%F{blue}(%T)
-%F{green}%/%F{blue}%#%f%b '
+%F{white}[ %F{green}%n%F{blue} @ %F{green}%m%F{white} ]%F{blue}(%T)
+%F{yellow}%/%F{blue}%#%f '
+
+# export RPROMPT='[%F{yellow}%?%f]'
