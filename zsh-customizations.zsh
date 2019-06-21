@@ -245,22 +245,13 @@ mkv2mp4 () {
 }
 
 # Prompt
-bold=$(tput bold)
-white=$(tput setaf 7)
-red=$(tput setaf 1)
-blue=$(tput setaf 4)
-green=$(tput setaf 2)
-#magenta=$(tput setaf 5)
-reset=$(tput sgr0)
 
-#export PS1='\[$bold\]\n\[$white\][\[$red\]\u@\h\[$white\]]\[$blue\](\A)\n\[$green\]$PWD\[$blue\]\$ \[$reset\]'
+# export PROMPT="
+# %K{black}%F{green}[ %F{default}%n %F{green}@ %F{default}%m %F{green}] %K{blue}%F{black} %K{blue}%F{black}%B(%T)%b %F{blue}%K{default}
+# %K{cyan}%F{black}%B%/ %K{black}%F{cyan}%K{black} %F{blue}%#%b %K{default}%F{black} %f%k"
 
-#export PROMPT='
-#%B%F{white}[%F{red}%n@%m%F{white}]%F{blue}(%T)
-#%F{green}%/%F{blue}%#%f%b '
-
-export PROMPT='
+export PROMPT="
 %F{white}[ %F{green}%n%F{blue} @ %F{green}%m%F{white} ]%F{blue}(%T)
-%F{yellow}%/%F{blue}%#%f '
+%F{yellow}%/%F{blue}%#%f "
 
 # export RPROMPT='[%F{yellow}%?%f]'
