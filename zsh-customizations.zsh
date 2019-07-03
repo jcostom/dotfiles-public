@@ -261,7 +261,7 @@ export PROMPT="
 if [ -f ${HOME}/.dotfiles-public/zsh-gitprompt.zsh ]; then
     export GIT_PROMPT_EXECUTABLE=python
     source ${HOME}/.dotfiles-public/zsh-gitprompt.zsh
-    export RPROMPT='%B$(git_super_status)'
+    export RPROMPT='$(git_super_status)'
 fi
 
 # Auto-Suggestions
