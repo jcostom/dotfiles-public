@@ -6,6 +6,7 @@ export HISTFILE=~/.zhistory
 setopt HIST_IGNORE_ALL_DUPS
 setopt inc_append_history
 setopt share_history
+setopt auto_cd
 
 # Initialize Completion
 autoload -Uz compinit
@@ -255,3 +256,8 @@ export PROMPT="
 %F{yellow}%/%F{blue}%#%f "
 
 # export RPROMPT='[%F{yellow}%?%f]'
+
+# Auto-Suggestions
+if [ -f  /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
