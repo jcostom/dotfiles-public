@@ -21,6 +21,11 @@ fi
 autoload -Uz promptinit
 promptinit
 
+# 256-Color FG BG Functions
+if [ -f  "${HOME}/.dotfiles-public/zsh-256colors.zsh" ]; then
+    source "${HOME}/.dotfiles-public/zsh-256colors.zsh"
+fi
+
 # package specific variables, OS independent
 # cheat - https://github.com/chrisallenlane/cheat
 export CHEATCOLORS=true
@@ -56,7 +61,8 @@ else
 fi
 
 # General Aliases
-alias dir='ls -lF'
+alias ls='ls -F --color'
+alias dir='ls -lF --color'
 alias txl='tmux ls'
 alias txn='tmux new -s'
 alias txa='tmux a -t'
@@ -85,6 +91,7 @@ if [ $_myos = "Darwin" ]; then
     alias unmute="osascript -e 'set volume output muted false'"
 
     # colorize ls output on macOS
+    alias ls='ls -GF'
     alias dir='ls -lGF'
 
     # Long running CLI command?  Tack ";lmk" onto the end
@@ -251,11 +258,13 @@ mkv2mp4 () {
 # %F{white}[ %F{green}%n%F{blue} @ %F{green}%m%F{white} ]%F{blue}(%T)
 # %F{yellow}%/%F{blue}%#%f "
 
-export PROMPT="
-%K{default}%F{white}[ %F{green}%n %F{blue}@ %F{green}%m %F{white}] %K{default}%F{blue}%S%s%K{blue} %F{black}%B(%T)%b %F{blue}%K{default}
-%F{yellow}%/%F{blue}%#%f "
+# export PROMPT="
+# $FG[255][ $FG[002]%n $FG[004]@ $FG[002]%m $FG[255]] $FG[004]%S%s$BG[004] $FG[000]%B(%T) %b$FG[004]
+# $FG[003]%/$FG[004]%#%{$reset_color%} "
 
-# export RPROMPT='[%F{yellow}%?%f]'
+export PROMPT="
+$FG[255][ $FG[002]%n $FG[012]@ $FG[002]%m $FG[255]] $FG[021]%S%s$BG[021] $FG[255]%B(%T) %b$FG[021]
+$FG[226]%/$FG[012]%#%{$reset_color%} "
 
 # Git RPROMPT
 if [ -f ${HOME}/.dotfiles-public/zsh-gitprompt.zsh ]; then
