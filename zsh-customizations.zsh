@@ -248,11 +248,11 @@ mkv2mp4 () {
 # Prompt
 
 # export PROMPT="
-# %K{black}%F{green}[ %F{default}%n %F{green}@ %F{default}%m %F{green}] %K{blue}%F{black} %K{blue}%F{black}%B(%T)%b %F{blue}%K{default}
-# %K{cyan}%F{black}%B%/ %K{black}%F{cyan}%K{black} %F{blue}%#%b %K{default}%F{black} %f%k"
+# %F{white}[ %F{green}%n%F{blue} @ %F{green}%m%F{white} ]%F{blue}(%T)
+# %F{yellow}%/%F{blue}%#%f "
 
 export PROMPT="
-%F{white}[ %F{green}%n%F{blue} @ %F{green}%m%F{white} ]%F{blue}(%T)
+%K{default}%F{white}[ %F{green}%n %F{blue}@ %F{green}%m %F{white}] %K{default}%F{blue}%S%s%K{blue} %F{black}%B(%T)%b %F{blue}%K{default}
 %F{yellow}%/%F{blue}%#%f "
 
 # export RPROMPT='[%F{yellow}%?%f]'
