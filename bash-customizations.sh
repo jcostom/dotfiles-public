@@ -212,25 +212,11 @@ getcertnames() {
 	fi;
 }
 
-# Convert join.me's webm export format to 24fps MP4 with h264 video/aac audio
-joinme2mp4 () {
-    local infile=$1
-    local outfile
-    outfile=$(echo "$infile" | sed 's/webm$/mp4/')
-    ffmpeg -y -i "$infile" -r 23.97 "$outfile"
-}
-
 lazygit () {
     local message=$*
     git add .
     git commit -a -m "$message"
     git push
-}
-
-# Create & enter a new directory
-mcd () {
-    mkdir -p "$1"
-    cd "$1" ||exit
 }
 
 # shortcut to find a process
@@ -241,14 +227,6 @@ psa () {
 # Show HTTP headers
 httpHeaders () {
     /usr/bin/curl -I -L "$@"
-}
-
-# Convert 4k mkv to mp4, add tag for apple tv
-mkv2mp4 () {
-    local infile=$1
-    local outfile
-    outfile=$(echo "$infile" | sed 's/mkv$/mp4/')
-    ffmpeg -i "$infile" -codec copy -vtag hvc1 -map 0:0 -map 0:1 "$outfile"
 }
 
 # Prompt
