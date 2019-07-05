@@ -251,5 +251,18 @@ $BG[021] $FG[255]%B(%T) %b$FG[021]$BG[093]$FG[255] %~ %# $FG[093]%k %f"
 if [ -f ${HOME}/.dotfiles-public/zsh-gitprompt.zsh ]; then
     export GIT_PROMPT_EXECUTABLE=python
     source ${HOME}/.dotfiles-public/zsh-gitprompt.zsh
+
+    ZSH_THEME_GIT_PROMPT_PREFIX="$FG[093]$BG[093] "
+    ZSH_THEME_GIT_PROMPT_SUFFIX=" $BG[099]%k%f"
+    ZSH_THEME_GIT_PROMPT_SEPARATOR="$BG[093]|$BG[099] "
+    ZSH_THEME_GIT_PROMPT_BRANCH="$FG[255]"
+    ZSH_THEME_GIT_PROMPT_STAGED="$FG[001]%{●%G%}"
+    ZSH_THEME_GIT_PROMPT_CONFLICTS="$FG[001]%{✖%G%}"
+    ZSH_THEME_GIT_PROMPT_CHANGED="$FG[255]$BG[099]%{✚%G%}"
+    ZSH_THEME_GIT_PROMPT_BEHIND="$BG[093] %{↓%G%}"
+    ZSH_THEME_GIT_PROMPT_AHEAD="$BG[093] %{↑%G%}"
+    ZSH_THEME_GIT_PROMPT_UNTRACKED="$BG[099]%{…%G%}"
+    ZSH_THEME_GIT_PROMPT_CLEAN="$FG[082]$BG[099]%{✔%G%} "
+
     RPROMPT='$(git_super_status)'
 fi
