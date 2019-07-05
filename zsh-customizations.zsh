@@ -242,7 +242,7 @@ httpHeaders () {
 
 PROMPT="
 $BG[020]$FG[255][ $FG[002]%n $FG[012]@ $FG[002]%m $FG[255]] $FG[020]%k
-$BG[021] $FG[255]%B(%T) %b$FG[021]$BG[093]$FG[255] %~ %# $FG[093]%k "
+$BG[021] $FG[255]%B(%T) %b$FG[021]$BG[093]$FG[255] %~ %# $FG[093]%k %{$reset_color%}"
 
 
 # Git RPROMPT
