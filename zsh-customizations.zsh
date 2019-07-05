@@ -230,6 +230,11 @@ httpHeaders () {
     /usr/bin/curl -I -L "$@"
 }
 
+# Auto-Suggestions
+if [ -f  /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
 # Prompt
 
 # export PROMPT="
@@ -242,7 +247,7 @@ httpHeaders () {
 
 PROMPT="
 $BG[020]$FG[255][ $FG[002]%n $FG[012]@ $FG[002]%m $FG[255]] $FG[020]%k
-$BG[021] $FG[255]%B(%T) %b$FG[021]$BG[093]$FG[255] %~ %# $FG[093]%k %{$reset_color%}"
+$BG[021] $FG[255]%B(%T) %b$FG[021]$BG[093]$FG[255] %~ %# $FG[093]%k %f"
 
 
 # Git RPROMPT
@@ -250,9 +255,4 @@ if [ -f ${HOME}/.dotfiles-public/zsh-gitprompt.zsh ]; then
     export GIT_PROMPT_EXECUTABLE=python
     source ${HOME}/.dotfiles-public/zsh-gitprompt.zsh
     RPROMPT='$(git_super_status)'
-fi
-
-# Auto-Suggestions
-if [ -f  /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
