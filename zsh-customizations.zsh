@@ -237,12 +237,13 @@ httpHeaders () {
 # %F{yellow}%/%F{blue}%#%f "
 
 # export PROMPT="
-# $FG[255][ $FG[002]%n $FG[004]@ $FG[002]%m $FG[255]] $FG[004]%S%s$BG[004] $FG[000]%B(%T) %b$FG[004]
-# $FG[003]%/$FG[004]%#%{$reset_color%} "
+# $FG[255][ $FG[002]%n $FG[012]@ $FG[002]%m $FG[255]] $FG[021]%S%s$BG[021] $FG[255]%B(%T) %b$FG[021]
+# $FG[226]%/$FG[012]%#%{$reset_color%} "
 
 export PROMPT="
-$FG[255][ $FG[002]%n $FG[012]@ $FG[002]%m $FG[255]] $FG[021]%S%s$BG[021] $FG[255]%B(%T) %b$FG[021]
-$FG[226]%/$FG[012]%#%{$reset_color%} "
+$BG[020]$FG[255][ $FG[002]%n $FG[012]@ $FG[002]%m $FG[255]] $FG[020]%k
+$BG[021] $FG[255]%B(%T) %b$FG[021]$BG[093]$FG[255] %~ %# $FG[093]%k "
+
 
 # Git RPROMPT
 if [ -f ${HOME}/.dotfiles-public/zsh-gitprompt.zsh ]; then
