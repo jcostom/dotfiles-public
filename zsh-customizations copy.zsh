@@ -1,6 +1,35 @@
 #!/usr/bin/env zsh
 
-# Local Vars && Aliases
+# Better history
+export HISTSIZE=1000
+export HISTFILE=~/.zhistory
+setopt HIST_IGNORE_ALL_DUPS
+setopt inc_append_history
+setopt share_history
+setopt auto_cd
+
+# Initialize Completion
+autoload -Uz compinit
+typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
+if [ $(date +'%j') != $updated_at ]; then
+    compinit -i
+else
+    compinit -C -i
+fi
+
+# Initialize Prompt
+autoload -Uz promptinit
+promptinit
+
+# 256-Color FG BG Functions
+if [ -f  "${HOME}/.dotfiles-public/zsh-256colors.zsh" ]; then
+    source "${HOME}/.dotfiles-public/zsh-256colors.zsh"
+fi
+
+# package specific variables, OS independent
+# cheat - https://github.com/chrisallenlane/cheat
+export CHEATCOLORS=true
+
 if [ -f "${HOME}/.dotfiles-private/zsh-local-vars.zsh" ]; then
     source "${HOME}/.dotfiles-private/zsh-local-vars.zsh"
 fi
@@ -9,13 +38,7 @@ if [ -f "${HOME}/.dotfiles-private/zsh-private-aliases.zsh" ]; then
     source "${HOME}/.dotfiles-private/zsh-private-aliases.zsh"
 fi
 
-# Better history
-export HISTSIZE=1000
-export HISTFILE=~/.zhistory
-setopt HIST_IGNORE_ALL_DUPS
-setopt inc_append_history
-setopt share_history
-
+# variables
 _myos=$(uname)
 
 # Setup OS-Specific variables and bash_completion
@@ -28,31 +51,6 @@ if [ $_myos = "Darwin" ]; then
     BYOBU_PREFIX=$(brew --prefix) || true
     export BREW_PREFIX
     BREW_PREFIX=$(brew --prefix) || true
-fi
-
-# Initialize Antigen
-if [ $_myos = "Darwin" ]; then
-    if [ -f /usr/local/share/antigen/antigen.zsh ]; then
-        source /usr/local/share/antigen/antigen.zsh
-    fi
-else
-    if [ -f /usr/share/zsh-antigen/antigen.zsh ]; then
-        source /usr/share/zsh-antigen/antigen.zsh
-    fi
-fi
-
-antigen use oh-my-zsh
-antigen bundle git
-antigen bundle command-not-found
-antigen bundle zsh-users/zsh-syntax-highlighting
-if [ $_myos = "Darwin" ]; then
-    antigen bundle osx
-fi
-antigen apply
-
-# Auto-Suggestions
-if [ -f  /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
 # Common variables
@@ -231,6 +229,11 @@ psa () {
 httpHeaders () {
     /usr/bin/curl -I -L "$@"
 }
+
+# Auto-Suggestions
+if [ -f  /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
 # Prompt
 
