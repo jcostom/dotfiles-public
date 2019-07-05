@@ -240,7 +240,7 @@ httpHeaders () {
 # $FG[255][ $FG[002]%n $FG[012]@ $FG[002]%m $FG[255]] $FG[021]%S%s$BG[021] $FG[255]%B(%T) %b$FG[021]
 # $FG[226]%/$FG[012]%#%{$reset_color%} "
 
-export PROMPT="
+PROMPT="
 $BG[020]$FG[255][ $FG[002]%n $FG[012]@ $FG[002]%m $FG[255]] $FG[020]%k
 $BG[021] $FG[255]%B(%T) %b$FG[021]$BG[093]$FG[255] %~ %# $FG[093]%k "
 
@@ -249,7 +249,7 @@ $BG[021] $FG[255]%B(%T) %b$FG[021]$BG[093]$FG[255] %~ %# $FG[093]%k "
 if [ -f ${HOME}/.dotfiles-public/zsh-gitprompt.zsh ]; then
     export GIT_PROMPT_EXECUTABLE=python
     source ${HOME}/.dotfiles-public/zsh-gitprompt.zsh
-    export RPROMPT='$(git_super_status)'
+    RPROMPT='$(git_super_status)'
 fi
 
 # Auto-Suggestions
