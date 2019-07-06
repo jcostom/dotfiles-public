@@ -31,14 +31,8 @@ if [ $_myos = "Darwin" ]; then
 fi
 
 # Initialize Antigen
-if [ $_myos = "Darwin" ]; then
-    if [ -f /usr/local/share/antigen/antigen.zsh ]; then
-        source /usr/local/share/antigen/antigen.zsh
-    fi
-else
-    if [ -f /usr/share/zsh-antigen/antigen.zsh ]; then
-        source /usr/share/zsh-antigen/antigen.zsh
-    fi
+if [ -f /usr/local/share/antigen/antigen.zsh ]; then
+    source /usr/local/share/antigen/antigen.zsh
 fi
 
 antigen use oh-my-zsh
