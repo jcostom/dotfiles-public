@@ -16,6 +16,9 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt inc_append_history
 setopt share_history
 
+# Don't change terminal names
+DISABLE_AUTO_TITLE="true"
+
 _myos=$(uname)
 
 # Setup OS-Specific variables and bash_completion
