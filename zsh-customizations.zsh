@@ -36,16 +36,15 @@ fi
 # Initialize Antigen
 if [ -f /usr/local/share/antigen/antigen.zsh ]; then
     source /usr/local/share/antigen/antigen.zsh
+    antigen use oh-my-zsh
+    antigen bundle git
+    antigen bundle command-not-found
+    antigen bundle zsh-users/zsh-syntax-highlighting
+    if [ $_myos = "Darwin" ]; then
+        antigen bundle osx
+    fi
+    antigen apply
 fi
-
-antigen use oh-my-zsh
-antigen bundle git
-antigen bundle command-not-found
-antigen bundle zsh-users/zsh-syntax-highlighting
-if [ $_myos = "Darwin" ]; then
-    antigen bundle osx
-fi
-antigen apply
 
 # Auto-Suggestions
 if [ -f  /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
