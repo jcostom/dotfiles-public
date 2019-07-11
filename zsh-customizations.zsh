@@ -40,6 +40,7 @@ if [ -f /usr/local/share/antigen/antigen.zsh ]; then
     antigen bundle git
     antigen bundle command-not-found
     antigen bundle zsh-users/zsh-syntax-highlighting
+    antigen bundle gmatheu/zsh-plugins explain-shell
     if [ $_myos = "Darwin" ]; then
         antigen bundle osx
     fi
