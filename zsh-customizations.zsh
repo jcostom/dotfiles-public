@@ -34,8 +34,8 @@ if [ $_myos = "Darwin" ]; then
 fi
 
 # Initialize Antigen
-if [ -f /usr/local/share/antigen/antigen.zsh ]; then
-    source /usr/local/share/antigen/antigen.zsh
+if [ -f "${HOME}/.dotfiles-public/antigen.zsh" ]; then
+    source "${HOME}/.dotfiles-public/antigen.zsh"
     antigen use oh-my-zsh
     antigen bundle git
     antigen bundle command-not-found
