@@ -81,6 +81,9 @@ alias sha256='openssl dgst -sha256'
 # Docker/Container TOP
 alias ctop='docker run --rm -ti --name=ctop-tmp -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
 
+# Docker nvidia info
+alias nvinfo='docker run --rm --gpus all nvidia/cuda nvidia-smi'
+
 # macOS-specific Aliases & functions
 if [ $_myos = "Darwin" ]; then
     # What's keeping the Mac from sleeping?
