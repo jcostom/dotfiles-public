@@ -51,7 +51,8 @@ function update_current_git_vars() {
         _GIT_STATUS=`git status --porcelain --branch &> /dev/null | $__GIT_PROMPT_DIR/src/.bin/gitstatus`
     fi
      __CURRENT_GIT_STATUS=("${(@s: :)_GIT_STATUS}")
-	GIT_BRANCH="⎇ $__CURRENT_GIT_STATUS[1]"
+	# GIT_BRANCH="⎇ $__CURRENT_GIT_STATUS[1]"
+	GIT_BRANCH=" $__CURRENT_GIT_STATUS[1]"
 	GIT_AHEAD=$__CURRENT_GIT_STATUS[2]
 	GIT_BEHIND=$__CURRENT_GIT_STATUS[3]
 	GIT_STAGED=$__CURRENT_GIT_STATUS[4]

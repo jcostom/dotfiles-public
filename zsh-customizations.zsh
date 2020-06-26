@@ -75,14 +75,10 @@ alias df='df -H'
 alias du='du -ch'
 alias fix_tty='stty sane'
 alias cmount='mount | column -t'
-alias nvim='/usr/local/bin/nvim -u ~/.vimrc'
 alias sha256='openssl dgst -sha256'
 
 # Docker/Container TOP
 alias ctop='docker run --rm -ti --name=ctop-tmp -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
-
-# Docker nvidia info
-alias nvinfo='docker run --rm --gpus all nvidia/cuda nvidia-smi'
 
 # macOS-specific Aliases & functions
 if [ $_myos = "Darwin" ]; then
@@ -152,6 +148,13 @@ if [ $_myos = "Darwin" ]; then
         killall Finder
     }
 fi
+
+# Linux-specific aliases and OS functions
+if [ $_myos = "Linux" ]; then
+    # Docker nvidia info
+    alias nvinfo='docker run --rm --gpus all nvidia/cuda:10.2-base nvidia-smi'
+fi
+
 
 # Useful functions
 # extract: Extract most know archives with one command
@@ -243,9 +246,19 @@ httpHeaders () {
 # $FG[255][ $FG[002]%n $FG[012]@ $FG[002]%m $FG[255]] $FG[021]%S%s$BG[021] $FG[255]%B(%T) %b$FG[021]
 # $FG[226]%/$FG[012]%#%{$reset_color%} "
 
+# OS-specific header
+if [ $_myos = "Darwin" ]; then
+    PRE=' '
+elif [ $_myos = "Linux" ]; then
+    PRE=' '
+else
+    PRE=' '
+fi
+
+
 PROMPT="
-$BG[020]$FG[255] [ $FG[002]%n $FG[012]@ $FG[002]%m $FG[255]] $FG[020]%k
-$BG[021] $FG[255]%B(%T) %b$FG[021]$BG[093]$FG[255] %~ %# $FG[093]%k %f"
+$BG[093]$FG[255] $PRE$BG[021]$FG[093] $FG[255][ $FG[002]%n $FG[012]@ $FG[002]%m $FG[255]] $FG[021]%k
+$BG[021] $FG[255]%B(%T) %b$FG[021]$BG[093]$FG[255] %~ %# $FG[093]%k %f"
 
 
 # Git RPROMPT
@@ -253,7 +266,7 @@ if [ -f ${HOME}/.dotfiles-public/zsh-gitprompt.zsh ]; then
     export GIT_PROMPT_EXECUTABLE=python
     source ${HOME}/.dotfiles-public/zsh-gitprompt.zsh
 
-    ZSH_THEME_GIT_PROMPT_PREFIX="$FG[093]$BG[093] "
+    ZSH_THEME_GIT_PROMPT_PREFIX="$FG[093]$BG[093] "
     ZSH_THEME_GIT_PROMPT_SUFFIX=" $BG[099]%k%f"
     ZSH_THEME_GIT_PROMPT_SEPARATOR="$BG[093]|$BG[099] "
     ZSH_THEME_GIT_PROMPT_BRANCH="$FG[255]"
