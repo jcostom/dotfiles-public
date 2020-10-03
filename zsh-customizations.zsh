@@ -152,7 +152,7 @@ fi
 # Linux-specific aliases and OS functions
 if [ $_myos = "Linux" ]; then
     # Docker nvidia info
-    alias nvinfo='docker run --rm --gpus all nvidia/cuda:10.2-base nvidia-smi'
+    alias nvinfo='docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi'
 fi
 
 
