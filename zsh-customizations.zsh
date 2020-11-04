@@ -78,7 +78,7 @@ alias cmount='mount | column -t'
 alias sha256='openssl dgst -sha256'
 
 # Docker/Container TOP
-alias ctop='docker run --rm -ti --name=ctop-tmp -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
+alias ctop='docker run --rm -ti --name=ctop -v /var/run/docker.sock:/var/run/docker.sock jinnlynn/ctop'
 
 # macOS-specific Aliases & functions
 if [ $_myos = "Darwin" ]; then
@@ -153,6 +153,7 @@ fi
 if [ $_myos = "Linux" ]; then
     # Docker nvidia info
     alias nvinfo='docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi'
+    alias pitemp='head -n 1 /sys/class/thermal/thermal_zone0/temp | xargs -I{} awk "BEGIN {printf \"%.2f\n\", {}/1000}"'
 fi
 
 
