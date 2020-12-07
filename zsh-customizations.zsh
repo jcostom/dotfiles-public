@@ -53,6 +53,13 @@ if [ -f  /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
 # Common variables
 if [ -f /usr/local/bin/vim ]; then
     export EDITOR=/usr/local/bin/vim
