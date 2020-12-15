@@ -37,11 +37,13 @@ fi
 if [ -f "${HOME}/.dotfiles-public/antigen.zsh" ]; then
     source "${HOME}/.dotfiles-public/antigen.zsh"
     antigen use oh-my-zsh
+    antigen update
     antigen bundle git
     antigen bundle command-not-found
     antigen bundle zsh-users/zsh-syntax-highlighting
     antigen bundle gmatheu/zsh-plugins explain-shell
     antigen bundle docker
+    antigen bundle genpass
     if [ $_myos = "Darwin" ]; then
         antigen bundle osx
     fi
