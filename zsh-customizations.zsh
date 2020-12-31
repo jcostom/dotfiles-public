@@ -24,13 +24,15 @@ _myos=$(uname)
 # Setup OS-Specific variables and bash_completion
 if [ $_myos = "Darwin" ]; then
     # running on macOS - setup brew & completion
-    export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-    # Disable homrew analytics (https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md)
-    export HOMEBREW_NO_ANALYTICS=1
-    export BYOBU_PREFIX
-    BYOBU_PREFIX=$(brew --prefix) || true
-    export BREW_PREFIX
-    BREW_PREFIX=$(brew --prefix) || true
+    if [ -f "/usr/local/bin/brew" ]; then 
+        export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+        # Disable homrew analytics (https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md)
+        export HOMEBREW_NO_ANALYTICS=1
+        export BYOBU_PREFIX
+        BYOBU_PREFIX=$(brew --prefix) || true
+        export BREW_PREFIX
+        BREW_PREFIX=$(brew --prefix) || true
+    fi
 fi
 
 # Initialize Antigen
