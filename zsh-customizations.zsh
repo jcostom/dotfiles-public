@@ -26,7 +26,14 @@ if [ $_myos = "Darwin" ]; then
     # running on macOS - setup brew & completion
     if [ -f "/usr/local/bin/brew" ]; then 
         export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-        # Disable homrew analytics (https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md)
+        export HOMEBREW_NO_ANALYTICS=1
+        export BYOBU_PREFIX
+        BYOBU_PREFIX=$(brew --prefix) || true
+        export BREW_PREFIX
+        BREW_PREFIX=$(brew --prefix) || true
+    fi
+    if [ -f "/opt/homebrew/bin/brew" ]; then 
+        export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
         export HOMEBREW_NO_ANALYTICS=1
         export BYOBU_PREFIX
         BYOBU_PREFIX=$(brew --prefix) || true
