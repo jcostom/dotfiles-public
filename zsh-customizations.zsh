@@ -170,7 +170,7 @@ fi
 # Linux-specific aliases and OS functions
 if [ $_myos = "Linux" ]; then
     # Docker nvidia info
-    alias nvinfo='docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi'
+    alias nvinfo='docker run --rm --gpus all nvidia/cuda nvidia-smi'
     alias pitemp='head -n 1 /sys/class/thermal/thermal_zone0/temp | xargs -I{} awk "BEGIN {printf \"%.2f\n\", {}/1000}"'
 fi
 
