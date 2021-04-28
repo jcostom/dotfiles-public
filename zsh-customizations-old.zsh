@@ -46,10 +46,8 @@ fi
 if [ -f "${HOME}/.dotfiles-public/antigen.zsh" ]; then
     source "${HOME}/.dotfiles-public/antigen.zsh"
     antigen use oh-my-zsh
-    antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
+    antigen update
     antigen bundle git
-    antigen bundle git-extras
-    antigen bundle git-flow
     antigen bundle command-not-found
     antigen bundle zsh-users/zsh-syntax-highlighting
     antigen bundle gmatheu/zsh-plugins explain-shell
@@ -259,28 +257,45 @@ httpHeaders () {
 
 # Prompt
 
-SPACESHIP_PROMPT_ORDER=(
-    time
-    dir
-    git
-    line_sep
-    jobs
-    exit_code
-    char
-)
+# export PROMPT="
+# %F{white}[ %F{green}%n%F{blue} @ %F{green}%m%F{white} ]%F{blue}(%T)
+# %F{yellow}%/%F{blue}%#%f "
 
-SPACESHIP_RPROMPT_ORDER=(
-    user
-    host
-)
+# export PROMPT="
+# $FG[255][ $FG[002]%n $FG[012]@ $FG[002]%m $FG[255]] $FG[021]%S%s$BG[021] $FG[255]%B(%T) %b$FG[021]
+# $FG[226]%/$FG[012]%#%{$reset_color%} "
 
-SPACESHIP_PROMPT_ADD_NEWLINE=true
-SPACESHIP_PROMPT_SEPARATE_LINE=true
-SPACESHIP_TIME_SHOW=true
-SPACESHIP_TIME_FORMAT='[ %D{%H:%M} ]'
-#SPACESHIP_TIME_COLOR=white
-SPACESHIP_CHAR_SYMBOL_ROOT='#'
-SPACESHIP_USER_SHOW=always
-SPACESHIP_HOST_SHOW=always
-SPACESHIP_DIR_TRUNC=0
-SPACESHIP_DIR_TRUNC_REPO=false
+# OS-specific header
+if [ $_myos = "Darwin" ]; then
+    PRE=' '
+elif [ $_myos = "Linux" ]; then
+    PRE=' '
+else
+    PRE=' '
+fi
+
+
+PROMPT="
+$BG[255]$FG[001] $PRE$BG[021]$FG[255]$FG[255]  %n @ %m  $FG[021]%k
+$BG[021]$FG[255]%B%D{%H:%M} %b$FG[021]$BG[093]$FG[255] %~ %# $FG[093]%k %f"
+
+
+# Git RPROMPT
+if [ -f ${HOME}/.dotfiles-public/zsh-gitprompt.zsh ]; then
+    export GIT_PROMPT_EXECUTABLE=python
+    source ${HOME}/.dotfiles-public/zsh-gitprompt.zsh
+
+    ZSH_THEME_GIT_PROMPT_PREFIX="$FG[021] $BG[021] "
+    ZSH_THEME_GIT_PROMPT_SUFFIX=" $BG[093]%k%f"
+    ZSH_THEME_GIT_PROMPT_SEPARATOR="$BG[021]|$BG[093] "
+    ZSH_THEME_GIT_PROMPT_BRANCH="$FG[255]"
+    ZSH_THEME_GIT_PROMPT_STAGED="$FG[001]%{●%G%}"
+    ZSH_THEME_GIT_PROMPT_CONFLICTS="$FG[001]%{ %G%}"
+    ZSH_THEME_GIT_PROMPT_CHANGED="$FG[255]$BG[093]%{ %G%}"
+    ZSH_THEME_GIT_PROMPT_BEHIND="$BG[021] %{ %G%}"
+    ZSH_THEME_GIT_PROMPT_AHEAD="$BG[021] %{ %G%}"
+    ZSH_THEME_GIT_PROMPT_UNTRACKED="$BG[093]%{ %G%}"
+    ZSH_THEME_GIT_PROMPT_CLEAN="$FG[082]$BG[093]%{ %G%} "
+
+    RPROMPT='$(git_super_status)'
+fi
