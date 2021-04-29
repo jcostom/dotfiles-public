@@ -267,21 +267,7 @@ spaceship_platform() {
     if [ $ostype = "Darwin" ]; then
         SPACESHIP_PLATFORM_SYMBOL=' '
     elif [ $ostype = "Linux" ]; then
-        local 'linuxdist'
-        linuxdist=$(grep ^ID= /etc/os-release |awk -F= '{print $2}')
-        if [ $linuxdist = "alpine" ]; then 
-            SPACESHIP_PLATFORM_SYMBOL=' '
-        elif [ $linuxdist = "centos" ]; then 
-            SPACESHIP_PLATFORM_SYMBOL=' '
-        elif [ $linuxdist = "debian" ]; then 
-            SPACESHIP_PLATFORM_SYMBOL=' '
-        elif [ $linuxdist = "rhel" ]; then 
-            SPACESHIP_PLATFORM_SYMBOL=' '
-        elif [ $linuxdist = "ubuntu" ]; then 
-            SPACESHIP_PLATFORM_SYMBOL=' '
-        else
-            SPACESHIP_PLATFORM_SYMBOL=' '
-        fi
+        SPACESHIP_PLATFORM_SYMBOL=' '
     else
         SPACESHIP_PLATFORM_SYMBOL=' '
     fi
