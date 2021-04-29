@@ -259,6 +259,37 @@ httpHeaders () {
 
 # Prompt
 
+spaceship_platform() {
+    [[ $SPACESHIP_PLATFORM_SHOW == false ]] && return
+
+    local 'ostype'
+    ostype=$(uname)
+    if [ $ostype = "Darwin" ]; then
+        SPACESHIP_PLATFORM_SYMBOL=' '
+    elif [ $ostype = "Linux" ]; then
+        local 'linuxdist'
+        linuxdist=$(grep ^ID= /etc/os-release |awk -F= '{print $2}')
+        if [ $linuxdist = "alpine" ]; then 
+            SPACESHIP_PLATFORM_SYMBOL=' '
+        elif [ $linuxdist = "centos" ]; then 
+            SPACESHIP_PLATFORM_SYMBOL=' '
+        elif [ $linuxdist = "debian" ]; then 
+            SPACESHIP_PLATFORM_SYMBOL=' '
+        elif [ $linuxdist = "rhel" ]; then 
+            SPACESHIP_PLATFORM_SYMBOL=' '
+        elif [ $linuxdist = "ubuntu" ]; then 
+            SPACESHIP_PLATFORM_SYMBOL=' '
+        else
+            SPACESHIP_PLATFORM_SYMBOL=' '
+        fi
+    else
+        SPACESHIP_PLATFORM_SYMBOL=' '
+    fi
+    spaceship::section \
+        "$SPACESHIP_PLATFORM_COLOR" \
+        "$SPACESHIP_PLATFORM_SYMBOL"
+}
+
 SPACESHIP_PROMPT_ORDER=(
     time
     dir
@@ -272,6 +303,7 @@ SPACESHIP_PROMPT_ORDER=(
 SPACESHIP_RPROMPT_ORDER=(
     user
     host
+    platform
 )
 
 SPACESHIP_PROMPT_ADD_NEWLINE=true
@@ -280,7 +312,10 @@ SPACESHIP_TIME_SHOW=true
 SPACESHIP_TIME_FORMAT='[ %D{%H:%M} ]'
 #SPACESHIP_TIME_COLOR=white
 SPACESHIP_CHAR_SYMBOL_ROOT='#'
+SPACESHIP_GIT_SYMBOL=''
 SPACESHIP_USER_SHOW=always
 SPACESHIP_HOST_SHOW=always
 SPACESHIP_DIR_TRUNC=0
 SPACESHIP_DIR_TRUNC_REPO=false
+SPACESHIP_PLATFORM_COLOR=red
+SPACESHIP_PLATFORM_SHOW=true
