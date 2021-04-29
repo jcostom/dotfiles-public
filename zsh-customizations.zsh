@@ -267,7 +267,12 @@ spaceship_platform() {
     if [ $ostype = "Darwin" ]; then
         SPACESHIP_PLATFORM_SYMBOL=' '
     elif [ $ostype = "Linux" ]; then
-        SPACESHIP_PLATFORM_SYMBOL=' '
+        distro=$(grep ^ID= /etc/os-release | awk -F= '{print $2}')
+        if [ $distro = "ubuntu" ]; then
+            SPACESHIP_PLATFORM_SYMBOL=' '
+        else
+            SPACESHIP_PLATFORM_SYMBOL=' '
+        fi
     else
         SPACESHIP_PLATFORM_SYMBOL=' '
     fi
