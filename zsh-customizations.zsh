@@ -267,6 +267,7 @@ spaceship_platform() {
     if [ $ostype = "Darwin" ]; then
         SPACESHIP_PLATFORM_SYMBOL=' '
     elif [ $ostype = "Linux" ]; then
+        local 'distro'
         distro=$(grep "^ID=" /etc/os-release | awk -F= '{print $2}')
         if [ $distro = "alpine" ]; then
             SPACESHIP_PLATFORM_SYMBOL=' '
