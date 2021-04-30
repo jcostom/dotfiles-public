@@ -277,6 +277,8 @@ spaceship_platform() {
             SPACESHIP_PLATFORM_SYMBOL=' '
         elif [ $distro = "fedora" ]; then
             SPACESHIP_PLATFORM_SYMBOL=' '
+        elif [ $distro = "gentoo" ]; then
+            SPACESHIP_PLATFORM_SYMBOL=' '
         elif [ $distro = "rhel" ]; then
             SPACESHIP_PLATFORM_SYMBOL=' '
         elif [ $distro = "ubuntu" ]; then
