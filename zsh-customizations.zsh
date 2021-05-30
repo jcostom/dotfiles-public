@@ -174,6 +174,20 @@ if [ $_myos = "Linux" ]; then
     # Docker nvidia info
     alias nvinfo='docker run --rm --gpus all nvidia/cuda nvidia-smi'
     alias pitemp='head -n 1 /sys/class/thermal/thermal_zone0/temp | xargs -I{} awk "BEGIN {printf \"%.2f\n\", {}/1000}"'
+
+    portainer-agent-update () {
+        docker pull portainer/agent:latest
+        docker stop portainer-agent
+        docker rm portainer-agent
+        docker run -d \
+            --restart=unless-stopped \
+            --net=containers \
+            --name=portainer-agent \
+            -p 9001:9001 \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -v /var/lib/docker/volumes:/var/lib/docker/volumes \
+            portainer/agent
+    }
 fi
 
 
