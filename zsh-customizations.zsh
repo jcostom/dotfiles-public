@@ -181,7 +181,6 @@ if [ $_myos = "Linux" ]; then
         docker rm portainer-agent
         docker run -d \
             --restart=unless-stopped \
-            --net=containers \
             --name=portainer-agent \
             -p 9001:9001 \
             -v /var/run/docker.sock:/var/run/docker.sock \
@@ -195,7 +194,7 @@ if [ $_myos = "Linux" ]; then
         docker rm portainer
         docker run -d \
             --restart=unless-stopped \
-            --net=containers \
+            -p 9000:9000 \
             --name=portainer \
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v /var/docks/portainer:/data \
