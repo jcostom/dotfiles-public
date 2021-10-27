@@ -196,6 +196,7 @@ if [ $_myos = "Linux" ]; then
             --restart=unless-stopped \
             -p 9000:9000 \
             --name=portainer \
+            --net=arwen \
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v /var/docks/portainer:/data \
             portainer/portainer-ce
