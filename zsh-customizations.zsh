@@ -20,6 +20,8 @@ setopt share_history
 DISABLE_AUTO_TITLE="true"
 
 _myos=$(uname)
+_myuid=$(id -u)
+_mygid=$(id -g)
 
 # Setup OS-Specific variables and bash_completion
 if [ $_myos = "Darwin" ]; then
@@ -101,8 +103,7 @@ alias sha256='openssl dgst -sha256'
 alias ctop='docker run --rm -ti --name=ctop -v /var/run/docker.sock:/var/run/docker.sock jinnlynn/ctop'
 
 # Docker Youtube Downloader
-alias yt-dl='docker run --rm -i -e PGID=$(id -g) -e PUID=$(id -u) \
-                -v "$(pwd)":/workdir:rw mikenye/youtube-dl'
+alias yt-dl="docker run --rm -i -e PUID=$_myuid -e PGID=$_mygid -v $(pwd):/workdir:rw mikenye/youtube-dl"
 
 # macOS-specific Aliases & functions
 if [ $_myos = "Darwin" ]; then
