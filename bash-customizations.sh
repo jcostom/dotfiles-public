@@ -75,6 +75,10 @@ alias sha256='openssl dgst -sha256'
 # Docker/Container TOP
 alias ctop='docker run --rm -ti --name=ctop-tmp -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
 
+# Docker Youtube Downloader
+alias yt-dl='docker run --rm -i -e PGID=$(id -g) -e PUID=$(id -u) \
+                -v "$(pwd)":/workdir:rw mikenye/youtube-dl'
+
 # macOS-specific Aliases & functions
 if [ "$_myos" == "Darwin" ]; then
     # Lock Screen

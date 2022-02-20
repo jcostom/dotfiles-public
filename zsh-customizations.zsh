@@ -100,6 +100,10 @@ alias sha256='openssl dgst -sha256'
 # Docker/Container TOP
 alias ctop='docker run --rm -ti --name=ctop -v /var/run/docker.sock:/var/run/docker.sock jinnlynn/ctop'
 
+# Docker Youtube Downloader
+alias yt-dl='docker run --rm -i -e PGID=$(id -g) -e PUID=$(id -u) \
+                -v "$(pwd)":/workdir:rw mikenye/youtube-dl'
+
 # macOS-specific Aliases & functions
 if [ $_myos = "Darwin" ]; then
     # What's keeping the Mac from sleeping?
