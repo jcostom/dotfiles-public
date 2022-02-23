@@ -205,6 +205,19 @@ if [ $_myos = "Linux" ]; then
             -v /var/docks/portainer:/data \
             portainer/portainer-ce
     }
+
+    portainer-delanco-update () {
+        docker pull portainer/portainer-ce
+        docker stop portainer
+        docker rm portainer
+        docker run -d \
+            --restart=unless-stopped \
+            -p 7443:9443 \
+            --name=portainer \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -v /var/docks/portainer:/data \
+            portainer/portainer-ce
+    }
 fi
 
 
