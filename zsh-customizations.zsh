@@ -172,6 +172,12 @@ if [ $_myos = "Darwin" ]; then
         killall Dock
         killall Finder
     }
+
+    # Startup minikube+Docker on macOS - needed on JNPR MacBook Pro
+    startDocker () {
+        minikube start --driver=hyperkit --keep-context
+        eval $(minikube docker-env)
+    }
 fi
 
 # Linux-specific aliases and OS functions
