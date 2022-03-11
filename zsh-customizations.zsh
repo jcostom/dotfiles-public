@@ -196,6 +196,7 @@ if [ $_myos = "Linux" ]; then
             -p 9001:9001 \
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v /var/lib/docker/volumes:/var/lib/docker/volumes \
+            --label=com.centurylinklabs.watchtower.enable=false \
             portainer/agent
     }
 
@@ -209,6 +210,7 @@ if [ $_myos = "Linux" ]; then
             --name=portainer \
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v /var/docks/portainer:/data \
+            --label=com.centurylinklabs.watchtower.enable=false \
             portainer/portainer-ce
     }
 
@@ -222,6 +224,7 @@ if [ $_myos = "Linux" ]; then
             --name=portainer \
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v /var/docks/portainer:/data \
+            --label=com.centurylinklabs.watchtower.enable=false \
             portainer/portainer-ce
     }
 fi
