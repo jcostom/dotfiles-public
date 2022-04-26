@@ -2,11 +2,11 @@
 
 # Local Vars && Aliases
 if [ -f "${HOME}/.dotfiles-private/zsh-local-vars.zsh" ]; then
-    source "${HOME}/.dotfiles-private/zsh-local-vars.zsh"
+    source "${HOME}"/.dotfiles-private/zsh-local-vars.zsh
 fi
 
 if [ -f "${HOME}/.dotfiles-private/zsh-private-aliases.zsh" ]; then
-    source "${HOME}/.dotfiles-private/zsh-private-aliases.zsh"
+    source "${HOME}"/.dotfiles-private/zsh-private-aliases.zsh
 fi
 
 # Better history
@@ -19,12 +19,13 @@ setopt share_history
 # Don't change terminal names
 DISABLE_AUTO_TITLE="true"
 
-_myos=$(uname)
-_myuid=$(id -u)
-_mygid=$(id -g)
+_myos="$(uname)"
+_myuid="$(id -u)"
+_mygid="$(id -g)"
+_hostname="$(hostname -s)"
 
 # Setup OS-Specific variables and bash_completion
-if [ $_myos = "Darwin" ]; then
+if [ "$_myos" = "Darwin" ]; then
     # running on macOS - setup brew & completion
     if [ -f "/usr/local/bin/brew" ]; then 
         export PATH=/usr/local/bin:/usr/local/sbin:$PATH
@@ -45,8 +46,8 @@ if [ $_myos = "Darwin" ]; then
 fi
 
 # Initialize Antigen
-if [ -f "${HOME}/.dotfiles-public/antigen.zsh" ]; then
-    source "${HOME}/.dotfiles-public/antigen.zsh"
+if [ -f "${HOME}"/.dotfiles-public/antigen.zsh ]; then
+    source "${HOME}"/.dotfiles-public/antigen.zsh
     antigen use oh-my-zsh
     antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
     antigen bundle git
@@ -57,15 +58,15 @@ if [ -f "${HOME}/.dotfiles-public/antigen.zsh" ]; then
     antigen bundle gmatheu/zsh-plugins explain-shell
     antigen bundle docker
     antigen bundle genpass
-    if [ $_myos = "Darwin" ]; then
+    if [ "$_myos" = "Darwin" ]; then
         antigen bundle osx
     fi
     antigen apply
 fi
 
 # Auto-Suggestions
-if [ -f  /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [ -f  "$(brew --prefix)"/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source "$(brew --prefix)"/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
 if type brew &>/dev/null; then
@@ -103,10 +104,24 @@ alias sha256='openssl dgst -sha256'
 alias ctop='docker run --rm -ti --name=ctop -v /var/run/docker.sock:/var/run/docker.sock jinnlynn/ctop'
 
 # Docker Youtube Downloader
-alias yt-dl="docker run --rm -i -e PUID=$_myuid -e PGID=$_mygid -v $(pwd):/workdir:rw mikenye/youtube-dl"
+alias yt-dl="docker run --rm -i -e PUID=""$_myuid"" -e PGID=""$_mygid"" -v $(pwd):/workdir:rw mikenye/youtube-dl"
+
+# Docker pull frequently updated containers unique to local system
+docker-pull-locals() {
+    containers=()
+    while IFS= read -r line
+    do
+        containers+=("$line")
+    done < "${HOME}"/.dotfiles-private/container-pulls/"$_hostname"/containers
+    
+    for container in "${containers[@]}"
+    do
+        docker pull "${container}"
+    done
+}
 
 # macOS-specific Aliases & functions
-if [ $_myos = "Darwin" ]; then
+if [ "$_myos" = "Darwin" ]; then
     # What's keeping the Mac from sleeping?
     alias nosleep="pmset -g assertions"
 
@@ -172,16 +187,10 @@ if [ $_myos = "Darwin" ]; then
         killall Dock
         killall Finder
     }
-
-    # Startup minikube+Docker on macOS - needed on JNPR MacBook Pro
-    startDocker () {
-        minikube start --driver=hyperkit --keep-context
-        eval $(minikube docker-env)
-    }
 fi
 
 # Linux-specific aliases and OS functions
-if [ $_myos = "Linux" ]; then
+if [ "$_myos" = "Linux" ]; then
     # Docker nvidia info
     alias nvinfo='docker run --name=nvinfo --gpus all nvidia/cuda:11.6.2-base-ubuntu20.04 nvidia-smi'
     alias pitemp='head -n 1 /sys/class/thermal/thermal_zone0/temp | xargs -I{} awk "BEGIN {printf \"%.2f\n\", {}/1000}"'
@@ -319,19 +328,19 @@ spaceship_platform() {
     elif [ $ostype = "Linux" ]; then
         local 'distro'
         distro=$(grep "^ID=" /etc/os-release | awk -F= '{print $2}')
-        if [ $distro = "alpine" ]; then
+        if [ "$distro" = "alpine" ]; then
             SPACESHIP_PLATFORM_SYMBOL=' '
-        elif [ $distro = "centos" ]; then
+        elif [ "$distro" = "centos" ]; then
             SPACESHIP_PLATFORM_SYMBOL=' '
-        elif [ $distro = "debian" ]; then
+        elif [ "$distro" = "debian" ]; then
             SPACESHIP_PLATFORM_SYMBOL=' '
-        elif [ $distro = "fedora" ]; then
+        elif [ "$distro" = "fedora" ]; then
             SPACESHIP_PLATFORM_SYMBOL=' '
-        elif [ $distro = "gentoo" ]; then
+        elif [ "$distro" = "gentoo" ]; then
             SPACESHIP_PLATFORM_SYMBOL=' '
-        elif [ $distro = "rhel" ]; then
+        elif [ "$distro" = "rhel" ]; then
             SPACESHIP_PLATFORM_SYMBOL=' '
-        elif [ $distro = "ubuntu" ]; then
+        elif [ "$distro" = "ubuntu" ]; then
             SPACESHIP_PLATFORM_SYMBOL=' '
         else
             SPACESHIP_PLATFORM_SYMBOL=' '
