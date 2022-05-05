@@ -107,7 +107,7 @@ docker-pull-locals() {
     while IFS= read -r line
     do
         containers+=("$line")
-    done < "${HOME}"/.dotfiles-private/container-pulls/"$_hostname"/containers
+    done < "${HOME}"/.dotfiles-private/container-pulls/"$_hostname"
     
     for container in "${containers[@]}"
     do
