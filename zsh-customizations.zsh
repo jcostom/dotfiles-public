@@ -226,6 +226,20 @@ if [ "$_myos" = "Linux" ]; then
             portainer/portainer-ce
     }
 
+    portainer-baseman-update () {
+        docker pull portainer/portainer-ce
+        docker stop portainer
+        docker rm portainer
+        docker run -d \
+            --restart=unless-stopped \
+            --add-host northbase:100.111.164.101 \
+            -p 9443:9443 \
+            --name=portainer \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -v /var/docks/portainer:/data \
+            portainer/portainer-ce
+    }
+
     portainer-delanco-update () {
         docker pull portainer/portainer-ce
         docker stop portainer
