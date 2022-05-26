@@ -237,13 +237,6 @@ if [ "$_myos" = "Linux" ]; then
             --name=portainer \
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v /var/docks/portainer:/data \
-            -l 'traefik.enable=true' \
-            -l 'traefik.http.routers.portainer.entrypoints=web,websecure' \
-            -l 'traefik.http.routers.portainer.rule=Host(`portainer.delaware.jcostom.net`)' \
-            -l 'traefik.http.routers.portainer.tls=true' \
-            -l 'traefik.http.routers.portainer.tls.certresolver=letsencrypt' \
-            -l 'traefik.http.services.portainer.loadbalancer.server.port=9443' \
-            -l 'traefik.http.routers.portainer.middlewares=default-headers@docker' \
             portainer/portainer-ce
     }
 
