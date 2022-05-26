@@ -241,7 +241,7 @@ if [ "$_myos" = "Linux" ]; then
             -l 'traefik.http.routers.portainer.entrypoints=web,websecure' \
             -l 'traefik.http.routers.portainer.rule=Host(`portainer.delaware.jcostom.net`)' \
             -l 'traefik.http.routers.portainer.tls=true' \
-            -l 'traefik.http.routers.portainer.certresolver=letsencrypt' \
+            -l 'traefik.http.routers.portainer.tls.certresolver=letsencrypt' \
             -l 'traefik.http.services.portainer.loadbalancer.server.port=9443' \
             -l 'traefik.http.routers.portainer.middlewares=default-headers@docker' \
             portainer/portainer-ce
