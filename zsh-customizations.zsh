@@ -195,63 +195,10 @@ if [ "$_myos" = "Linux" ]; then
     if [ -f  /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
         source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     fi
-
+    
     # Docker nvidia info
     alias nvinfo='docker run --rm --name=nvinfo --gpus all nvidia/cuda:11.6.2-base-ubuntu20.04 nvidia-smi'
     alias pitemp='head -n 1 /sys/class/thermal/thermal_zone0/temp | xargs -I{} awk "BEGIN {printf \"%.2f\n\", {}/1000}"'
-
-    portainer-agent-update () {
-        docker pull portainer/agent:latest
-        docker stop portainer-agent
-        docker rm portainer-agent
-        docker run -d \
-            --restart=unless-stopped \
-            --name=portainer-agent \
-            -p 9001:9001 \
-            -v /var/run/docker.sock:/var/run/docker.sock \
-            -v /var/lib/docker/volumes:/var/lib/docker/volumes \
-            portainer/agent
-    }
-
-    portainer-update () {
-        docker pull portainer/portainer-ce
-        docker stop portainer
-        docker rm portainer
-        docker run -d \
-            --restart=unless-stopped \
-            -p 9443:9443 \
-            --name=portainer \
-            -v /var/run/docker.sock:/var/run/docker.sock \
-            -v /var/docks/portainer:/data \
-            portainer/portainer-ce
-    }
-
-    portainer-baseman-update () {
-        docker pull portainer/portainer-ce
-        docker stop portainer
-        docker rm portainer
-        docker run -d \
-            --restart=unless-stopped \
-            --add-host northbase:100.111.164.101 \
-            -p 9443:9443 \
-            --name=portainer \
-            -v /var/run/docker.sock:/var/run/docker.sock \
-            -v /var/docks/portainer:/data \
-            portainer/portainer-ce
-    }
-
-    portainer-delanco-update () {
-        docker pull portainer/portainer-ce
-        docker stop portainer
-        docker rm portainer
-        docker run -d \
-            --restart=unless-stopped \
-            -p 7443:9443 \
-            --name=portainer \
-            -v /var/run/docker.sock:/var/run/docker.sock \
-            -v /var/docks/portainer:/data \
-            portainer/portainer-ce
-    }
 fi
 
 
