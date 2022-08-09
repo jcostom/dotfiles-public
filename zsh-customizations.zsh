@@ -49,7 +49,8 @@ fi
 if [ -f "${HOME}"/.dotfiles-public/antigen.zsh ]; then
     source "${HOME}"/.dotfiles-public/antigen.zsh
     antigen use oh-my-zsh
-    antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
+    # antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship_platform
+    antigen theme romkatv/powerlevel10k
     antigen bundle git
     antigen bundle git-extras
     antigen bundle git-flow
@@ -62,6 +63,11 @@ if [ -f "${HOME}"/.dotfiles-public/antigen.zsh ]; then
         antigen bundle osx
     fi
     antigen apply
+fi
+
+# activate P10K variables
+if [ -f "${HOME}"/.p10k.zsh ]; then
+    source "${HOME}"/.p10k.zsh
 fi
 
 if type brew &>/dev/null; then
@@ -284,67 +290,67 @@ httpHeaders () {
 
 # Prompt
 
-spaceship_platform() {
-    [[ $SPACESHIP_PLATFORM_SHOW == false ]] && return
-
-    local 'ostype'
-    ostype=$(uname)
-    if [ $ostype = "Darwin" ]; then
-        SPACESHIP_PLATFORM_SYMBOL=' '
-    elif [ $ostype = "Linux" ]; then
-        local 'distro'
-        distro=$(grep "^ID=" /etc/os-release | awk -F= '{print $2}')
-        if [ "$distro" = "alpine" ]; then
-            SPACESHIP_PLATFORM_SYMBOL=' '
-        elif [ "$distro" = "centos" ]; then
-            SPACESHIP_PLATFORM_SYMBOL=' '
-        elif [ "$distro" = "debian" ]; then
-            SPACESHIP_PLATFORM_SYMBOL=' '
-        elif [ "$distro" = "fedora" ]; then
-            SPACESHIP_PLATFORM_SYMBOL=' '
-        elif [ "$distro" = "gentoo" ]; then
-            SPACESHIP_PLATFORM_SYMBOL=' '
-        elif [ "$distro" = "rhel" ]; then
-            SPACESHIP_PLATFORM_SYMBOL=' '
-        elif [ "$distro" = "ubuntu" ]; then
-            SPACESHIP_PLATFORM_SYMBOL=' '
-        else
-            SPACESHIP_PLATFORM_SYMBOL=' '
-        fi
-    else
-        SPACESHIP_PLATFORM_SYMBOL=' '
-    fi
-    spaceship::section \
-        "$SPACESHIP_PLATFORM_COLOR" \
-        "$SPACESHIP_PLATFORM_SYMBOL"
-}
-
-SPACESHIP_PROMPT_ORDER=(
-    time
-    dir
-    git
-    line_sep
-    jobs
-    exit_code
-    char
-)
-
-SPACESHIP_RPROMPT_ORDER=(
-    user
-    host
-    platform
-)
-
-SPACESHIP_PROMPT_ADD_NEWLINE=true
-SPACESHIP_PROMPT_SEPARATE_LINE=true
-SPACESHIP_TIME_SHOW=true
-SPACESHIP_TIME_FORMAT='[ %D{%H:%M} ]'
-#SPACESHIP_TIME_COLOR=white
-SPACESHIP_CHAR_SYMBOL_ROOT='#'
-SPACESHIP_GIT_SYMBOL=''
-SPACESHIP_USER_SHOW=always
-SPACESHIP_HOST_SHOW=always
-SPACESHIP_DIR_TRUNC=0
-SPACESHIP_DIR_TRUNC_REPO=false
-SPACESHIP_PLATFORM_COLOR=white
-SPACESHIP_PLATFORM_SHOW=true
+# spaceship_platform() {
+#     [[ $SPACESHIP_PLATFORM_SHOW == false ]] && return
+# 
+#     local 'ostype'
+#     ostype=$(uname)
+#     if [ $ostype = "Darwin" ]; then
+#         SPACESHIP_PLATFORM_SYMBOL=' '
+#     elif [ $ostype = "Linux" ]; then
+#         local 'distro'
+#         distro=$(grep "^ID=" /etc/os-release | awk -F= '{print $2}')
+#         if [ "$distro" = "alpine" ]; then
+#             SPACESHIP_PLATFORM_SYMBOL=' '
+#         elif [ "$distro" = "centos" ]; then
+#             SPACESHIP_PLATFORM_SYMBOL=' '
+#         elif [ "$distro" = "debian" ]; then
+#             SPACESHIP_PLATFORM_SYMBOL=' '
+#         elif [ "$distro" = "fedora" ]; then
+#             SPACESHIP_PLATFORM_SYMBOL=' '
+#         elif [ "$distro" = "gentoo" ]; then
+#             SPACESHIP_PLATFORM_SYMBOL=' '
+#         elif [ "$distro" = "rhel" ]; then
+#             SPACESHIP_PLATFORM_SYMBOL=' '
+#         elif [ "$distro" = "ubuntu" ]; then
+#             SPACESHIP_PLATFORM_SYMBOL=' '
+#         else
+#             SPACESHIP_PLATFORM_SYMBOL=' '
+#         fi
+#     else
+#         SPACESHIP_PLATFORM_SYMBOL=' '
+#     fi
+#     spaceship::section \
+#         "$SPACESHIP_PLATFORM_COLOR" \
+#         "$SPACESHIP_PLATFORM_SYMBOL"
+# }
+# 
+# SPACESHIP_PROMPT_ORDER=(
+#     time
+#     dir
+#     git
+#     line_sep
+#     jobs
+#     exit_code
+#     char
+# )
+# 
+# SPACESHIP_RPROMPT_ORDER=(
+#     user
+#     host
+#     platform
+# )
+# 
+# SPACESHIP_PROMPT_ADD_NEWLINE=true
+# SPACESHIP_PROMPT_SEPARATE_LINE=true
+# SPACESHIP_TIME_SHOW=true
+# SPACESHIP_TIME_FORMAT='[ %D{%H:%M} ]'
+# #SPACESHIP_TIME_COLOR=white
+# SPACESHIP_CHAR_SYMBOL_ROOT='#'
+# SPACESHIP_GIT_SYMBOL=''
+# SPACESHIP_USER_SHOW=always
+# SPACESHIP_HOST_SHOW=always
+# SPACESHIP_DIR_TRUNC=0
+# SPACESHIP_DIR_TRUNC_REPO=false
+# SPACESHIP_PLATFORM_COLOR=white
+# SPACESHIP_PLATFORM_SHOW=true
