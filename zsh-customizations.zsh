@@ -59,8 +59,10 @@ if [ -f "${HOME}"/.dotfiles-public/antigen.zsh ]; then
     antigen bundle gmatheu/zsh-plugins explain-shell
     antigen bundle docker
     antigen bundle genpass
+    antigen bundle sudo
     if [ "$_myos" = "Darwin" ]; then
-        antigen bundle osx
+        antigen bundle macos
+        antigen bundle brew
     fi
     antigen apply
 fi
