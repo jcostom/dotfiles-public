@@ -53,6 +53,7 @@ if [ -f "${HOME}"/.dotfiles-public/antigen.zsh ]; then
     antigen bundle command-not-found
     antigen bundle zsh-users/zsh-syntax-highlighting
     antigen bundle genpass
+    antigen bundle chucknorris
     antigen bundle sudo
     if [ "$_myos" = "Darwin" ]; then
         antigen bundle macos
