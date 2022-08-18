@@ -132,7 +132,7 @@ if [ "$_myos" == "Darwin" ]; then
         echo -e "\\n${RED}Current date :$NC " ; date
         echo -e "\\n${RED}Machine stats :$NC " ; uptime
         echo -e "\\n${RED}Current network location :$NC " ; scselect
-        echo -e "\\n${RED}Public facing IP Address :$NC " ;myip
+        echo -e "\\n${RED}Public facing IP Address :$NC " ; myip
         #echo -e "\n${RED}DNS Configuration:$NC " ; scutil --dns
         echo
     }

@@ -151,9 +151,6 @@ if [ "$_myos" = "Darwin" ]; then
     # MTR
     alias mtr='sudo mtr -e -o LSR NABWV'
 
-    # vim
-    alias gvim='open -a MacVim'
-
     # Mac IP Info
     alias localip='ipconfig getifaddr en0'
     alias ipinfo='ipconfig getpacket en0'
@@ -162,20 +159,6 @@ if [ "$_myos" = "Darwin" ]; then
     alias powercli='docker run --rm -it -v ~/.local/powerclicore:/tmp/scripts vmware/powerclicore'
 
     # functions
-    # ii:
-    # display useful host related informaton
-    ii() {
-        echo -e "\\nYou are logged on ${RED}$HOST"
-        echo -e "\\nAdditionnal information:$NC " ; uname -a
-        echo -e "\\n${RED}Users logged on:$NC " ; w -h
-        echo -e "\\n${RED}Current date :$NC " ; date
-        echo -e "\\n${RED}Machine stats :$NC " ; uptime
-        echo -e "\\n${RED}Current network location :$NC " ; scselect
-        echo -e "\\n${RED}Public facing IP Address :$NC " ;myip
-        #echo -e "\n${RED}DNS Configuration:$NC " ; scutil --dns
-        echo
-    }
-
     # trash
     trash () {
         command mv "$@" ~/.Trash
