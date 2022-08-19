@@ -1,23 +1,19 @@
 #!/usr/bin/env bash
 
+if [ -f "${HOME}"/.dotfiles-private/bash-local-vars.sh ]; then
+    # shellcheck source="${HOME}"/.dotfiles-private/bash-local-vars.sh
+    source "${HOME}"/.dotfiles-private/bash-local-vars.sh
+fi
+
+if [ -f "${HOME}"/.dotfiles-private/bash-private-aliases.sh ]; then
+    # shellcheck source="${HOME}"/.dotfiles-private/bash-private-aliases.sh
+    source "${HOME}"/.dotfiles-private/bash-private-aliases.sh
+fi
+
 # Better history
 export HISTCONTROL=ignoreboth
 export HISTSIZE=1000
 export HISTIGNORE="ls:pwd:exit"
-
-# package specific variables, OS independent
-# cheat - https://github.com/chrisallenlane/cheat
-export CHEATCOLORS=true
-
-if [ -f "${HOME}/.dotfiles-private/bash-local-vars.sh" ]; then
-    # shellcheck source=$HOME/.dotfiles-private/bash-local-vars.sh
-    source "${HOME}/.dotfiles-private/bash-local-vars.sh"
-fi
-
-if [ -f "${HOME}/.dotfiles-private/bash-private-aliases.sh" ]; then
-    # shellcheck source=$HOME/.dotfiles-private/bash-private-aliases.sh
-    source "${HOME}/.dotfiles-private/bash-private-aliases.sh"
-fi
 
 # variables
 _myos=$(uname)
