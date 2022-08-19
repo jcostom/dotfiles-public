@@ -27,21 +27,20 @@ _hostname="$(hostname -s)"
 # Setup OS-Specific variables and bash_completion
 if [ "$_myos" = "Darwin" ]; then
     # running on macOS - setup brew & completion
+    # Intel macOS uses /usr/local for homebrew
     if [ -f "/usr/local/bin/brew" ]; then 
         export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-        export HOMEBREW_NO_ANALYTICS=1
-        export BYOBU_PREFIX
-        BYOBU_PREFIX=$(brew --prefix) || true
-        export BREW_PREFIX
-        BREW_PREFIX=$(brew --prefix) || true
+        export HAS_HOMEBREW=1
     fi
+    # Apple Silicon macOS uses /opt/homebrew for homebrew
     if [ -f "/opt/homebrew/bin/brew" ]; then 
         export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
+        export HAS_HOMEBREW=1
+    fi
+    if [ ${HAS_HOMEBREW} ]; then
         export HOMEBREW_NO_ANALYTICS=1
-        export BYOBU_PREFIX
-        BYOBU_PREFIX=$(brew --prefix) || true
-        export BREW_PREFIX
-        BREW_PREFIX=$(brew --prefix) || true
+        export BYOBU_PREFIX=$(brew --prefix) || true
+        export BREW_PREFIX=$(brew --prefix) || true
     fi
 fi
 
@@ -179,9 +178,9 @@ fi
 # Linux-specific aliases and OS functions
 if [ "$_myos" = "Linux" ]; then
     # Auto-Suggestions
-    if [ -f  /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-        source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-    fi
+    #if [ -f  /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    #    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    #fi
     
     # Docker nvidia info
     alias nvinfo='docker run --rm --name=nvinfo --gpus all nvidia/cuda:11.6.2-base-ubuntu20.04 nvidia-smi'
