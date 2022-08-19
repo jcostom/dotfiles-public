@@ -178,9 +178,9 @@ fi
 # Linux-specific aliases and OS functions
 if [ "$_myos" = "Linux" ]; then
     # Auto-Suggestions
-    #if [ -f  /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    #    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-    #fi
+    if [ -f  /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+        source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    fi
     
     # Docker nvidia info
     alias nvinfo='docker run --rm --name=nvinfo --gpus all nvidia/cuda:11.6.2-base-ubuntu20.04 nvidia-smi'
