@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+if [ -f ${HOME}/.dotfiles-public/zsh-customizations.zsh ]; then
+    source ${HOME}/.dotfiles-public/zsh-customizations.zsh
+fi
+
+export SSH_AUTH_SOCK=~/.1password/agent.sock
