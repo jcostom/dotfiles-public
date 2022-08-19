@@ -50,6 +50,7 @@ if [ -f "${HOME}"/.dotfiles-public/antigen.zsh ]; then
     antigen use oh-my-zsh
     antigen theme romkatv/powerlevel10k
     antigen bundle command-not-found
+    antigen bundle zsh-users/zsh-autosuggestions
     antigen bundle zsh-users/zsh-syntax-highlighting
     antigen bundle genpass
     antigen bundle chucknorris
@@ -120,11 +121,6 @@ docker-pull-locals() {
 
 # macOS-specific Aliases & functions
 if [ "$_myos" = "Darwin" ]; then
-# Auto-Suggestions
-    if [ -f  "$(brew --prefix)"/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-        source "$(brew --prefix)"/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-    fi
-
     # What's keeping the Mac from sleeping?
     alias nosleep="pmset -g assertions"
 
@@ -177,16 +173,10 @@ fi
 
 # Linux-specific aliases and OS functions
 if [ "$_myos" = "Linux" ]; then
-    # Auto-Suggestions
-    if [ -f  /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-        source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-    fi
-    
     # Docker nvidia info
     alias nvinfo='docker run --rm --name=nvinfo --gpus all nvidia/cuda:11.6.2-base-ubuntu20.04 nvidia-smi'
     alias pitemp='head -n 1 /sys/class/thermal/thermal_zone0/temp | xargs -I{} awk "BEGIN {printf \"%.2f\n\", {}/1000}"'
 fi
-
 
 # Useful functions
 # extract: Extract most know archives with one command

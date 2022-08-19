@@ -21,25 +21,11 @@ _myuid=$(id -u)
 _mygid=$(id -g)
 
 # Setup OS-Specific variables and bash_completion
-if [ "$_myos" == "Darwin" ]; then
-    # running on macOS - setup brew & completion
-    export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-    # Disable homrew analytics (https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md)
-    export HOMEBREW_NO_ANALYTICS=1
-    export BYOBU_PREFIX
-    BYOBU_PREFIX=$(brew --prefix) || true
-    export BREW_PREFIX
-    BREW_PREFIX=$(brew --prefix) || true
 
-    if [ -f "$BREW_PREFIX/etc/bash_completion" ]; then
-        # shellcheck source=$BREW_PREFIX/etc/bash_completion
-        . "$BREW_PREFIX/etc/bash_completion"
-    fi
-elif [ "$_myos" == 'Linux' ]; then
-    # running on Linux - setup completion
-    if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-        . /etc/bash_completion
-    fi
+
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    # shellcheck source=/etc/bash_completion
+    source /etc/bash_completion
 fi
 
 # Common variables
@@ -67,7 +53,6 @@ alias df='df -H'
 alias du='du -ch'
 alias fix_tty='stty sane'
 alias cmount='mount | column -t'
-alias nvim='/usr/local/bin/nvim -u ~/.vimrc'
 alias sha256='openssl dgst -sha256'
 
 # Docker/Container TOP
@@ -75,80 +60,6 @@ alias ctop='docker run --rm -ti --name=ctop-tmp -v /var/run/docker.sock:/var/run
 
 # Docker Youtube Downloader
 alias yt-dl="docker run --rm -i -e PUID=$_myuid -e PGID=$_mygid -v $(pwd):/workdir:rw mikenye/youtube-dl"
-
-# macOS-specific Aliases & functions
-if [ "$_myos" == "Darwin" ]; then
-    # Lock Screen
-    # "Switch User" method
-    # alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-    # Uses Maclock tool - https://github.com/jcostom/maclock
-    alias afk="/usr/local/bin/maclock"
-
-    # What's keeping the Mac from sleeping?
-    alias nosleep="pmset -g assertions"
-
-    # Mute & unmute from CLI
-    alias mute="osascript -e 'set volume output muted true'"
-    alias unmute="osascript -e 'set volume output muted false'"
-
-    # colorize ls output on macOS
-    alias dir='ls -lGF'
-
-    # Long running CLI command?  Tack ";lmk" onto the end
-    alias lmk="say 'Process complete.'"
-
-    # cleanupDS: recursively delete .DS_Store files
-    alias cleanupDS="find . -type f -name '*.DS_Store' -ls -delete"
-
-    # Brew
-    alias bupd="brew -v update"
-    alias bupg="brew -v upgrade"
-    alias bclean="brew cleanup"
-
-    # MTR
-    alias mtr='sudo mtr -e -o LSR NABWV'
-
-    # vim
-    alias gvim='open -a MacVim'
-
-    # Mac IP Info
-    alias localip='ipconfig getifaddr en0'
-    alias ipinfo='ipconfig getpacket en0'
-
-    # PowerCLI Core
-    alias powercli='docker run --rm -it -v ~/.local/powerclicore:/tmp/scripts vmware/powerclicore'
-
-    # functions
-    # ii:
-    # display useful host related informaton
-    ii() {
-        echo -e "\\nYou are logged on ${RED}$HOST"
-        echo -e "\\nAdditionnal information:$NC " ; uname -a
-        echo -e "\\n${RED}Users logged on:$NC " ; w -h
-        echo -e "\\n${RED}Current date :$NC " ; date
-        echo -e "\\n${RED}Machine stats :$NC " ; uptime
-        echo -e "\\n${RED}Current network location :$NC " ; scselect
-        echo -e "\\n${RED}Public facing IP Address :$NC " ; myip
-        #echo -e "\n${RED}DNS Configuration:$NC " ; scutil --dns
-        echo
-    }
-
-    # trash
-    trash () {
-        command mv "$@" ~/.Trash
-    }
-
-    # Mac showing generic icons for stuff? Clear the icon cache
-    # and start over.
-    clearIconCache () {
-        sudo rm -rfv /Library/Caches/com.apple.iconservices.store
-        sudo find /private/var/folders/ \( -name com.apple.dock.iconcache -or -name com.apple.iconservices \) -exec rm -rfv {} \;
-        sleep 3
-        sudo touch /Applications/*
-        killall Dock
-        killall Finder
-    }
-fi
 
 # Useful functions
 # extract: Extract most know archives with one command
