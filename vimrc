@@ -1,27 +1,30 @@
-set softtabstop=4
+set nocompatible
+filetype off
+syntax on
+filetype plugin indent on
+set modelines=0
+set formatoptions=tcqrn1
 set tabstop=4
-set expandtab
-set smarttab
-set showmatch
-set hlsearch
-set smartcase
-set ignorecase
-set incsearch
 set shiftwidth=4
-" set smartindent
-set ruler
-set undolevels=1000
+set softtabstop=4
+set expandtab
+set noshiftround
 set backspace=indent,eol,start
-
-" set statusline=   " clear the statusline for when vimrc is reloaded
-" set statusline+=%-3.3n\                      " buffer number
-" set statusline+=%f\                          " file name
-" set statusline+=%h%m%r%w                     " flags
-" set statusline+=[%{strlen(&ft)?&ft:'none'},  " filetype
-" set statusline+=%{strlen(&fenc)?&fenc:&enc}, " encoding
-" set statusline+=%{&fileformat}]              " file format
-" set statusline+=%=                           " right align
-" set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\  " highlight
-" set statusline+=%b,0x%-8B\                   " current char
-" set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
+set ttyfast
 set laststatus=2
+set showmode
+set showcmd
+set matchpairs+=<:>
+set list
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ [BUFFER=%n]\ %{strftime('%c')}
+set encoding=utf-8
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set viminfo='100,<9999,s100
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview"
