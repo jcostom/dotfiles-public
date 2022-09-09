@@ -10,3 +10,6 @@ if [ -f "${HOME}/.dotfiles-public/bash-customizations.sh" ]; then
     source "${HOME}/.dotfiles-public/bash-customizations.sh"
 fi
 ```
+
+testing123
+
