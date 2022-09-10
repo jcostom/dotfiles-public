@@ -103,7 +103,7 @@ alias sha256='openssl dgst -sha256'
 alias ctop='docker run --rm -ti --name=ctop -v /var/run/docker.sock:/var/run/docker.sock jinnlynn/ctop'
 
 # Docker Youtube Downloader
-alias yt-dl="docker run --rm -i -e PUID=""$_myuid"" -e PGID=""$_mygid"" -v $(pwd):/workdir:rw ghcr.io/mikenye/docker-youtube-dl:latest"
+# alias yt-dl="docker run --rm -i -e PUID=""$_myuid"" -e PGID=""$_mygid"" -v $(pwd):/workdir:rw ghcr.io/mikenye/docker-youtube-dl:latest"
 
 # Docker pull frequently updated containers unique to local system
 docker-pull-locals() {
