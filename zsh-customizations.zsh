@@ -59,6 +59,9 @@ if [ -f "${HOME}"/.dotfiles-public/antigen.zsh ]; then
         antigen bundle macos
         antigen bundle brew
     fi
+    if [ -x "$(command -v fzf)" ]; then
+        antigen bundle fzf
+    fi
     antigen bundle aliases
     antigen apply
 fi
@@ -176,6 +179,22 @@ if [ "$_myos" = "Linux" ]; then
     # Docker nvidia info
     alias nvinfo='docker run --rm --name=nvinfo --gpus all nvidia/cuda:11.7.0-base-ubuntu22.04 nvidia-smi'
     alias pitemp='head -n 1 /sys/class/thermal/thermal_zone0/temp | xargs -I{} awk "BEGIN {printf \"%.2f\n\", {}/1000}"'
+fi
+
+# functions using fzf, but only if fzf is installed
+if [ -x "$(command -v fzf)" ]; then
+    # fd - cd to selected directory
+    fd() {
+        local dir
+        dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+        cd "$dir"
+    }
+
+    # fh - search in your command history and execute selected command
+    fh() {
+        eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+    }
 fi
 
 # Useful functions
