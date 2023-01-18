@@ -28,3 +28,11 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview"
+
+call plug#begin()
+
+Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-github-dashboard'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+call plug#end()
