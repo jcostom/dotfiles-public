@@ -55,6 +55,7 @@ if [ -f "${HOME}"/.dotfiles-public/antigen.zsh ]; then
     antigen bundle genpass
     antigen bundle chucknorris
     antigen bundle sudo
+    antigen bundle thewtex/tmux-mem-cpu-load
     if [ "$_myos" = "Darwin" ]; then
         antigen bundle macos
         antigen bundle brew
