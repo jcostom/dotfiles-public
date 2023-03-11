@@ -33,6 +33,7 @@
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
     os_icon                 # os identifier
+    ssh
     dir                     # current directory
     vcs                     # git status
     # =========================[ Line #2 ]=========================
@@ -1666,6 +1667,10 @@
   # typeset -g POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION='⭐'
   # Custom prefix.
   typeset -g POWERLEVEL9K_TIME_PREFIX='at '
+
+  # setup ssh icon colors
+  typeset -g POWERLEVEL9K_SSH_FOREGROUND=15
+  typeset -g POWERLEVEL9K_SSH_BACKGROUND=238
 
   # Example of a user-defined prompt segment. Function prompt_example will be called on every
   # prompt if `example` prompt segment is added to POWERLEVEL9K_LEFT_PROMPT_ELEMENTS or
