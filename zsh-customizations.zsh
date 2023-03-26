@@ -198,6 +198,15 @@ if [ -x "$(command -v fzf)" ]; then
 fi
 
 # Useful functions
+# updatedots: Update my dotfiles from github
+updatedots() {
+    echo 'Public Dotfiles'; cd ~/.dotfiles-public ; git pull
+    echo 'Private Dotfiles'; cd ~/.dotfiles-private ; git pull
+    cd ~
+    echo 'Update Antigen'; antigen selfupdate
+    echo 'Update Antigen Modules'; antigen update
+}
+
 # extract: Extract most know archives with one command
 extract () {
     if [ -f "$1" ] ; then

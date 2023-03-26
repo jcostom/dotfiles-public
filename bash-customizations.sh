@@ -85,6 +85,13 @@ extract () {
      fi
 }
 
+# updatedots: Update my dotfiles from github
+updatedots() {
+    echo 'Public Dotfiles'; cd ~/.dotfiles-public; git pull
+    echo 'Private Dotfiles'; cd ~/.dotfiles-private ; git pull
+    cd ~
+}
+
 # zipf: To create a ZIP archive of a folder
 zipf () { zip -r "$1".zip "$1" ; }
 
