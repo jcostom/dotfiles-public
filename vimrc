@@ -28,3 +28,8 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview"
+if has('mac')
+    set rtp+=/opt/homebrew/bin/fzf
+elseif has ('linux')
+    set rtp+=/usr/bin/fzf
+endif
