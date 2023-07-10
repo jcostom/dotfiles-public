@@ -38,7 +38,7 @@ if [ "$_myos" = "Darwin" ]; then
         export HAS_HOMEBREW=1
     fi
     if [ ${HAS_HOMEBREW} ]; then
-        export HOMEBREW_NO_ANALYTICS=1
+        # export HOMEBREW_NO_ANALYTICS=1
         export BYOBU_PREFIX=$(brew --prefix) || true
         export BREW_PREFIX=$(brew --prefix) || true
     fi
