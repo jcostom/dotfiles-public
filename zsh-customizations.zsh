@@ -19,10 +19,17 @@ setopt share_history
 # Don't change terminal names
 DISABLE_AUTO_TITLE="true"
 
-_myos="$(uname)"
 _myuid="$(id -u)"
 _mygid="$(id -g)"
 _hostname="$(hostname -s)"
+
+# Am I running on a Synology NAS?
+uname -a |grep synology > /dev/null
+if [ $? -eq 0 ]; then
+    _myos="synology"
+else
+    _myos="$(uname)"
+fi
 
 # Setup OS-Specific variables and bash_completion
 if [ "$_myos" = "Darwin" ]; then
@@ -53,14 +60,14 @@ if [ -f "${HOME}"/.dotfiles-public/antigen.zsh ]; then
     antigen bundle zsh-users/zsh-autosuggestions
     antigen bundle zsh-users/zsh-syntax-highlighting
     antigen bundle genpass
-    antigen bundle chucknorris
     antigen bundle sudo
     if [ "$_myos" = "Darwin" ]; then
         antigen bundle macos
         antigen bundle brew
     fi
-    if [ -x "$(command -v fzf)" ]; then
+    if [ "$_myos" != "synology" ]; then
         antigen bundle fzf
+        antigen bundle chucknorris
     fi
     antigen bundle aliases
     antigen apply
