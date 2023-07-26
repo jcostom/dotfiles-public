@@ -68,6 +68,7 @@ if [ -f "${HOME}"/.dotfiles-public/antigen.zsh ]; then
     if [ "$_myos" != "synology" ]; then
         antigen bundle fzf
         antigen bundle chucknorris
+        antigen bundle 1password
     fi
     antigen bundle aliases
     antigen apply
