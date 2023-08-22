@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+if [ -f ${HOME}/.dotfiles-private/1password-ssh.zsh ]; then
+    source ${HOME}/.dotfiles-private/1password-ssh.zsh
+fi
+
 if [ -f ${HOME}/.dotfiles-public/zsh-customizations.zsh ]; then
     source ${HOME}/.dotfiles-public/zsh-customizations.zsh
 fi
