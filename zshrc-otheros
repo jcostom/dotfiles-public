@@ -4,6 +4,7 @@ if [ -f ${HOME}/.dotfiles-public/zsh-customizations.zsh ]; then
     source ${HOME}/.dotfiles-public/zsh-customizations.zsh
 fi
 
+SNAPDIR="/snap/bin"
 if [ -d "${SNAPDIR}" ] && [[ ":$PATH:" != *":${SNAPDIR}:"* ]]; then
-    PATH="/snap/bin:${PATH}"
+    PATH="${SNAPDIR}:${PATH}"
 fi
