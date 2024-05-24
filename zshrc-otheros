@@ -8,3 +8,18 @@ SNAPDIR="/snap/bin"
 if [ -d "${SNAPDIR}" ] && [[ ":$PATH:" != *":${SNAPDIR}:"* ]]; then
     PATH="${SNAPDIR}:${PATH}"
 fi
+
+SBIN="/sbin"
+if [ -d "${SBIN}" ] && [[ ":$PATH:" != *":${SBIN}:"* ]]; then
+    PATH="${SBIN}:${PATH}"
+fi
+
+USRSBIN="/sbin"
+if [ -d "${USRSBIN}" ] && [[ ":$PATH:" != *":${USRSBIN}:"* ]]; then
+    PATH="${USRSBIN}:${PATH}"
+fi
+
+USRLOCALSBIN="/sbin"
+if [ -d "${USRLOCALSBIN}" ] && [[ ":$PATH:" != *":${USRLOCALSBIN}:"* ]]; then
+    PATH="${USRLOCALSBIN}:${PATH}"
+fi
