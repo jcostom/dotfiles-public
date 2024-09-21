@@ -48,6 +48,7 @@ if [ "$_myos" = "Darwin" ]; then
         # export HOMEBREW_NO_ANALYTICS=1
         export BYOBU_PREFIX=$(brew --prefix) || true
         export BREW_PREFIX=$(brew --prefix) || true
+        alias bi='brew -v install'
     fi
 fi
 
