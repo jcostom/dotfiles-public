@@ -43,6 +43,7 @@ if [ "$_myos" = "Darwin" ]; then
     if [ -f "/opt/homebrew/bin/brew" ]; then 
         export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
         export HAS_HOMEBREW=1
+        alias pyvenv='source ~/.venv/bin/activate'
     fi
     if [ ${HAS_HOMEBREW} ]; then
         # export HOMEBREW_NO_ANALYTICS=1
