@@ -157,7 +157,9 @@ if [ "$_myos" = "Darwin" ]; then
     alias bclean="brew cleanup"
 
     # MTR
-    alias mtr='sudo mtr -e -o LSR NABWV'
+    alias mtr='sudo mtr -e -o "LSR NABWV"'
+    alias mtr4='sudo mtr -4 -e -o "LSR NABWV"'
+    alias mtr6='sudo mtr -6 -e -o "LSR NABWV"'
 
     # Mac IP Info
     alias localip='ipconfig getifaddr en0'
