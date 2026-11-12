@@ -9,3 +9,6 @@ if [ -f ${HOME}/.dotfiles-public/zsh-customizations.zsh ]; then
 fi
 
 export SSH_AUTH_SOCK=~/.1password/agent.sock
+
+# Created by `pipx` on 2026-04-07 15:25:08
+export PATH="$PATH:${HOME}/.local/bin"
